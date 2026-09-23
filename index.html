@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The New Bookclub</title>
+<meta name="description" content="Every book The New Bookclub has read together, season by season.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%93%9A%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=Young+Serif&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#F2F4F1; --ink:#1B2430; --muted:#5B6673; --line:#D3D9D5;
+  --navy:#1F3A5F; --gold:#D4A02E; --field:#FFFFFF;
+  --serif:"Young Serif", Georgia, "Times New Roman", serif;
+  --sans:"Instrument Sans", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+@media (prefers-color-scheme: dark){
+  :root{ --paper:#11171E; --ink:#E7EAEE; --muted:#9AA5B1; --line:#2A343F; --navy:#9DBCE3; --gold:#E2B54A; --field:#18202A; }
+}
+*{box-sizing:border-box}
+html{scroll-padding-top:1rem}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:1.0625rem;line-height:1.5;-webkit-text-size-adjust:100%}
+.wrap{max-width:60rem;margin:0 auto;padding:0 1.25rem}
+header{padding:clamp(2rem,6vw,4rem) 0 1.5rem}
+h1{font-family:var(--serif);font-weight:400;color:var(--navy);font-size:clamp(2.6rem,9vw,5rem);line-height:1;letter-spacing:-.02em;margin:0 0 .9rem}
+.lede{margin:0;color:var(--muted);font-size:1.15rem;max-width:32rem}
+
+/* shelf */
+.shelf-wrap{margin:1.25rem 0 0}
+#shelf{display:flex;flex-wrap:wrap;gap:.9rem 1.1rem;align-items:flex-end}
+.group{display:flex;flex-direction:column}
+.row{display:flex;align-items:flex-end;gap:2px;padding:0 2px;border-bottom:4px solid var(--navy);margin-top:.35rem}
+.spine{display:block;border-radius:2px 2px 0 0;cursor:pointer;transition:opacity .15s}
+.spine.dim{opacity:.14}
+.glabel{font-size:.72rem;color:var(--muted);margin-top:.3rem;white-space:nowrap}
+#caption{min-height:1.6rem;margin:.9rem 0 0;font-size:.95rem;color:var(--muted)}
+#caption strong{color:var(--ink);font-weight:600}
+
+/* toolbar */
+.tools{display:flex;flex-wrap:wrap;gap:.75rem;margin:1.5rem 0 .5rem}
+.tools input,.tools select{font:inherit;color:var(--ink);background:var(--field);border:1.5px solid var(--line);border-radius:6px;padding:.7rem .9rem;min-height:2.9rem}
+.tools input{flex:1 1 14rem}
+.tools select{flex:0 1 13rem}
+.tools :focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+#status{min-height:1.4rem;margin:.25rem 0 0;color:var(--muted);font-size:.95rem}
+
+/* seasons */
+.season{display:grid;grid-template-columns:1fr;gap:.6rem;padding:1.75rem 0 1.25rem;border-top:1px solid var(--line)}
+.season[hidden],.book[hidden]{display:none}
+.season h2{font-family:var(--serif);font-weight:400;font-size:1.55rem;line-height:1.15;margin:0;color:var(--navy)}
+.count{margin:.15rem 0 0;color:var(--muted);font-size:.92rem}
+.books{list-style:none;margin:0;padding:0}
+.book{display:flex;justify-content:space-between;align-items:baseline;gap:1rem;padding:.6rem .4rem;border-bottom:1px solid var(--line);scroll-margin-top:1.5rem}
+.book:last-child{border-bottom:0}
+.t{font-weight:600}
+.a{display:block;color:var(--muted);font-size:.95rem}
+.d{color:var(--muted);font-size:.9rem;white-space:nowrap;text-align:right}
+.tag{display:inline-block;margin-left:.5rem;padding:0 .4rem;border:1px solid var(--line);border-radius:4px;font-size:.75rem;font-weight:500;color:var(--muted);vertical-align:.1em}
+.book.flash{animation:flash 2s ease-out}
+@keyframes flash{0%,35%{background:color-mix(in srgb,var(--gold) 35%,transparent)}100%{background:transparent}}
+@media (min-width:760px){
+  .season{grid-template-columns:12rem 1fr;gap:2rem}
+  .season>div:first-child{position:sticky;top:1rem;align-self:start}
+}
+.authors{list-style:none;margin:0;padding:0}
+.authors li{display:flex;justify-content:space-between;gap:1rem;padding:.5rem .4rem;border-bottom:1px solid var(--line)}
+.authors li:last-child{border-bottom:0}
+.authors[hidden]{display:none}
+footer{padding:2rem 0 3rem;border-top:1px solid var(--line);color:var(--muted);font-size:.95rem}
+footer p{max-width:36rem;margin:.25rem 0}
+.skip{position:absolute;left:-999px}
+.skip:focus{left:1rem;top:1rem;background:var(--field);padding:.5rem .8rem;z-index:5}
+@media (prefers-reduced-motion:reduce){.book.flash{animation:none;outline:2px solid var(--gold)}.spine{transition:none}}
+</style>
+</head>
+<body>
+<a class="skip" href="#list">Skip to the list</a>
+<div class="wrap">
+<header>
+  <h1>The New Bookclub</h1>
+  <p class="lede" id="lede">Every book we have read together.</p>
+  <div class="tools" role="search">
+    <input id="q" type="search" placeholder="Search by title or author" aria-label="Search by title or author" autocomplete="off">
+    <select id="jump" aria-label="Jump to a season"><option value="">Jump to a season</option></select>
+  </div>
+  <p id="status" aria-live="polite"></p>
+  <div class="shelf-wrap">
+    <div id="shelf" role="img" aria-label="A shelf with one spine for every book we have read, grouped by season, most recent first"></div>
+    <p id="caption" aria-hidden="true">Every spine is a book. Tap one to find it in the list.</p>
+  </div>
+</header>
+
+<main>
+  <div id="list"></div>
+  <section class="season" id="authors-sec">
+    <div><h2>Most-read authors</h2><p class="count">Three or more books</p></div>
+    <ul class="authors" id="authors"></ul>
+  </section>
+</main>
+
+<footer>
+  <p>This list was pieced together from the club's own records. Some early titles and dates may be missing or wrong.</p>
+</footer>
+</div>
+
+<script>
+const DATA = {"seasons":[{"id":"pre-2004","label":"Before 2004","books":[{"title":"A Fine Balance","author":"Rohinton Mistry"},{"title":"A Heartbreaking Work of Staggering Genius","author":"Dave Eggers"},{"title":"A Map of the World","author":"Jane Hamilton","date":"1999-2000"},{"title":"The Year of the Death of Ricardo Reis","author":"José Saramago","date":"1999"},{"title":"American Pastoral","author":"Philip Roth"},{"title":"Anil's Ghost","author":"Michael Ondaatje","date":"2002?"},{"title":"Atonement","author":"Ian McEwan"},{"title":"Boom, Bust and Echo 2000","author":"David Foot"},{"title":"Captain Corelli's Mandolin","author":"Louis de Bernières","date":"1997-98"},{"title":"Collected Stories","author":"Donald Margulies"},{"title":"Crossing to Safety","author":"Wallace Stegner"},{"title":"Crow Lake","author":"Mary Lawson"},{"title":"Damascus Gate","author":"Robert Stone"},{"title":"Death Comes for the Archbishop","author":"Willa Cather","date":"1999-2000"},{"title":"Divine Secrets of the Ya-Ya Sisterhood","author":"Rebecca Wells"},{"title":"Don't Let's Go to the Dogs Tonight","author":"Alexandra Fuller"},{"title":"Ender's Game","author":"Orson Scott Card"},{"title":"Fall on Your Knees","author":"Ann-Marie MacDonald"},{"title":"Floating in My Mother's Palm","author":"Ursula Hegi"},{"title":"Fugitive Pieces","author":"Anne Michaels"},{"title":"House of Sand and Fog","author":"Andre Dubus III"},{"title":"Life of Pi","author":"Yann Martel"},{"title":"Lovely Bones","author":"Alice Sebold"},{"title":"Mercy Among the Children","author":"David Adams Richards"},{"title":"My Dream of You","author":"Nuala O'Faolain","date":"2002?"},{"title":"Not Wanted on the Voyage","author":"Timothy Findley"},{"title":"Paula","author":"Isabel Allende","date":"2002?"},{"title":"Perfume","author":"Patrick Süskind"},{"title":"Portrait of a Marriage","author":"Nigel Nicolson"},{"title":"She's Come Undone","author":"Wally Lamb"},{"title":"Tamarind Mem","author":"Anita Rau Badami"},{"title":"The Black Prince","author":"Iris Murdoch","date":"May 2003"},{"title":"The Book of Hours","author":"Michael Cunningham"},{"title":"The Corrections","author":"Jonathan Franzen"},{"title":"The Heart of the Matter","author":"Graham Greene","date":"2002?"},{"title":"The Many Lives and Secret Sorrows of Josephine B.","author":"Sandra Gulland"},{"title":"The Mark of an Angel","author":"Nancy Huston","date":"2000?"},{"title":"The Poisonwood Bible","author":"Barbara Kingsolver","date":"2000-01"},{"title":"The Red Tent","author":"Anita Diamant"},{"title":"The Scarlet Letter","author":"Nathaniel Hawthorne"},{"title":"The Secret River","author":"Kate Grenville"},{"title":"The Seven Storey Mountain","author":"Thomas Merton"},{"title":"The Stone Diaries","author":"Carol Shields","date":"March 2002"},{"title":"The Underpainter","author":"Jane Urquhart"},{"title":"To the Lighthouse","author":"Virginia Woolf"},{"title":"Underworld","author":"Don DeLillo"},{"title":"White Teeth","author":"Zadie Smith"},{"title":"Written on the Body","author":"Jeanette Winterson"}]},{"id":"2004-05","label":"2004-2005","books":[{"title":"The No. 1 Ladies' Detective Agency","author":"Alexander McCall Smith","date":"Jan 2004"},{"title":"George Orwell","author":"Gordon Bowker","date":"Feb 2004"},{"title":"Nine Parts of Desire","author":"Geraldine Brooks","date":"Feb 2005"},{"title":"No Crystal Stair","author":"May Ruth Sausfield","date":"March 2005"},{"title":"Tales of a Female Nomad: Living at Large in the World","author":"Rita Golden Gelman"},{"title":"The Cure for Death by Lightning","author":"Gail Anderson-Dargatz","date":"Sept 2004"},{"title":"The Da Vinci Code","author":"Dan Brown"},{"title":"The Kite Runner","author":"Khaled Hosseini","date":"May 2005"},{"title":"The Lost Garden","author":"Helen Humphreys","date":"2005"},{"title":"Two Solitudes","author":"Hugh MacLennan"}]},{"id":"2005-06","label":"2005-2006","books":[{"title":"A Room of One's Own","author":"Virginia Woolf","date":"Sept 2005"},{"title":"Bel Canto","author":"Ann Patchett"},{"title":"Beyond Black","author":"Hilary Mantel"},{"title":"Blindness","author":"José Saramago"},{"title":"Daisy Miller","author":"Henry James"},{"title":"May Sarton: A Poet's Life","author":"Lenora P. Blouin"},{"title":"Pride and Prejudice","author":"Jane Austen"},{"title":"Sweetness in the Belly","author":"Camilla Gibb"},{"title":"The Crazed","author":"Ha Jin"},{"title":"La Cucina","author":"Lily Prior"},{"title":"Reading Lolita in Tehran","author":"Azar Nafisi"}]},{"id":"2006-07","label":"2006-2007","books":[{"title":"A Complicated Kindness","author":"Miriam Toews","date":"Sept 2006"},{"title":"Beyond Black","author":"Hilary Mantel"},{"title":"Scar Tissue","author":"Michael Ignatieff","date":"Oct 2006"},{"title":"Skating to Antarctica","author":"Jenny Diski","date":"Feb 2007"},{"title":"Small Island","author":"Andrea Levy"},{"title":"Sweetness in the Belly","author":"Camilla Gibb","date":"March 2007"},{"title":"The Glass Castle","author":"Jeannette Walls"},{"title":"The Mermaid Chair","author":"Sue Monk Kidd","date":"2007"},{"title":"Eight Months on Ghazzah Street","author":"Hilary Mantel"}]},{"id":"2007-08","label":"2007-2008","books":[{"title":"The Master","author":"Colm Tóibín"},{"title":"A Question of Upbringing","author":"Anthony Powell"},{"title":"Extremely Loud and Incredibly Close","author":"Jonathan Safran Foer"},{"title":"A Man Without a Country","author":"Kurt Vonnegut"},{"title":"Suite Française","author":"Irène Némirovsky"},{"title":"Brideshead Revisited","author":"Evelyn Waugh"},{"title":"The Girls","author":"Lori Lansens"},{"title":"The Inheritance of Loss","author":"Kiran Desai"},{"title":"The Good Earth","author":"Pearl S. Buck"}]},{"id":"2008-09","label":"2008-2009","books":[{"title":"Middlesex","author":"Jeffrey Eugenides"},{"title":"The House of Mirth","author":"Edith Wharton"},{"title":"Mr. Pip","author":"Lloyd Jones"},{"title":"On Chesil Beach","author":"Ian McEwan"},{"title":"Arthur & George","author":"Julian Barnes"},{"title":"Love in the Time of Cholera","author":"Gabriel García Márquez"},{"title":"The Janissary Tree","author":"Jason Goodwin"},{"title":"Norwegian Wood","author":"Haruki Murakami"}]},{"id":"2009-10","label":"2009-2010","books":[{"title":"Almost","author":"Elizabeth Benedict"},{"title":"Larry's Party","author":"Carol Shields"},{"title":"Sometime Towards the End","author":"Diana Athill"},{"title":"The Book of Negroes","author":"Lawrence Hill"},{"title":"The Guernsey Literary and Potato Peel Society","author":"Mary Ann Shaffer & Annie Barrows"},{"title":"The Bend in the River","author":"V. S. Naipaul"},{"title":"White Tiger","author":"Aravind Adiga"},{"title":"Loving Frank","author":"Nancy Horan"}]},{"id":"2010-11","label":"2010-2011","books":[{"title":"Huckleberry Finn","author":"Mark Twain","date":"Sept 2010"},{"title":"Stoner","author":"John Williams","date":"Oct 2010"},{"title":"Out Stealing Horses","author":"Per Petterson","date":"Nov 2010"},{"title":"The Secret Scriptures","author":"Sebastian Barry","date":"Dec 2010"},{"title":"Arcadian Adventures with the Idle Rich","author":"Stephen Leacock","date":"Jan 2011"},{"title":"Tinkers","author":"Paul Harding","date":"Feb 2011"},{"title":"A Fortunate Life","author":"Albert Facey","date":"March 2011"},{"title":"The Girl Who Played with Fire","author":"Stieg Larsson","date":"April 2011"},{"title":"Lady Chatterley's Lover","author":"D. H. Lawrence","date":"May 2011","format":"film"}]},{"id":"2011-12","label":"2011-2012","books":[{"title":"Wait for Me!","author":"Deborah Mitford"},{"title":"The Shipping News","author":"Annie Proulx"},{"title":"Don Quixote","author":"Miguel de Cervantes"},{"title":"Astrid and Veronika","author":"Linda Olsson"},{"title":"A Good Death","author":"Elizabeth Ironside"},{"title":"We Need to Talk About Kevin","author":"Lionel Shriver"},{"title":"The Widow's Children","author":"Paula Fox"},{"title":"In the Country of Men","author":"Hisham Matar"}]},{"id":"2012-13","label":"2012-2013","books":[{"title":"Cutting for Stone","author":"Abraham Verghese"},{"title":"Let the Great World Spin","author":"Colum McCann"},{"title":"Swinging on a Star","author":"Patricia Bissonette"},{"title":"Travelling Light","author":"Agnes Henchey"},{"title":"The Submission","author":"Amy Waldman"},{"title":"The Sense of an Ending","author":"Julian Barnes"},{"title":"The Hare with Amber Eyes","author":"Edmund de Waal"},{"title":"Bride of New France","author":"Suzanne Desrochers"},{"title":"The Great Gatsby","author":"F. Scott Fitzgerald"},{"title":"The Navigator of New York","author":"Wayne Johnston"}]},{"id":"2013-14","label":"2013-2014","books":[{"title":"The Forgotten Garden","author":"Kate Morton"},{"title":"The Golden Spruce","author":"John Vaillant"},{"title":"The Cat's Table","author":"Michael Ondaatje"},{"title":"The Night Circus","author":"Erin Morgenstern"},{"title":"The Testament of Mary","author":"Colm Tóibín"},{"title":"A Prayer for Owen Meany","author":"John Irving"},{"title":"The Immortal Life of Henrietta Lacks","author":"Rebecca Skloot"},{"title":"The Cello Suites","author":"Eric Siblin"},{"title":"The Painted Veil","author":"W. Somerset Maugham","format":"film"}]},{"id":"2014-15","label":"2014-2015","books":[{"title":"Shantaram","author":"Gregory David Roberts"},{"title":"The Goldfinch","author":"Donna Tartt"},{"title":"In the Midst of Life","author":"Jennifer Worth"},{"title":"The Light Between Oceans","author":"M. L. Stedman"},{"title":"Selected Stories: The Best of Alice Munro","author":"Alice Munro"},{"title":"Where'd You Go, Bernadette","author":"Maria Semple"},{"title":"The Painted Girls","author":"Cathy Marie Buchanan"},{"title":"Never Mind","author":"Edward St Aubyn"},{"title":"A Tale of Two Cities","author":"Charles Dickens","format":"film"}]},{"id":"2015-16","label":"2015-2016","books":[{"title":"The Elegance of the Hedgehog","author":"Muriel Barbery"},{"title":"Italian Shoes","author":"Henning Mankell"},{"title":"The Piano Teacher","author":"Janice Y. K. Lee"},{"title":"A Death in the Family (My Struggle)","author":"Karl Ove Knausgaard"},{"title":"The Night Stages","author":"Jane Urquhart"},{"title":"All the Light We Cannot See","author":"Anthony Doerr"},{"title":"Middlemarch","author":"George Eliot"}]},{"id":"2016-17","label":"2016-2017","books":[{"title":"A Spool of Blue Thread","author":"Anne Tyler"},{"title":"The Ascent of Rum Doodle","author":"W. E. Bowman"},{"title":"The Blazing World","author":"Siri Hustvedt"},{"title":"My Brilliant Friend","author":"Elena Ferrante"},{"title":"A Good Man Is Hard to Find","author":"Flannery O'Connor"},{"title":"To Kill a Mockingbird","author":"Harper Lee"},{"title":"The Big Green Tent","author":"Ludmila Ulitskaya"}]},{"id":"2017-18","label":"2017-2018","books":[{"title":"Commonwealth","author":"Ann Patchett"},{"title":"A Very Close Conspiracy","author":"Jane Dunn"},{"title":"The Noise of Time","author":"Julian Barnes"},{"title":"The Uncommon Reader","author":"Alan Bennett"},{"title":"A Man Called Ove","author":"Fredrik Backman"},{"title":"The Infatuations","author":"Javier Marías"},{"title":"Stalin's Daughter","author":"Rosemary Sullivan"}]},{"id":"2018-19","label":"2018-2019","books":[{"title":"February","author":"Lisa Moore"},{"title":"Nothing to Envy","author":"Barbara Demick"},{"title":"My Name Is Red","author":"Orhan Pamuk"},{"title":"Killers of the Flower Moon","author":"David Grann"},{"title":"Wide Sargasso Sea","author":"Jean Rhys"},{"title":"One Hundred Years of Solitude","author":"Gabriel García Márquez"},{"title":"Americanah","author":"Chimamanda Ngozi Adichie"},{"title":"The Association of Small Bombs","author":"Karan Mahajan"}]},{"id":"2019-20","label":"2019-2020","books":[{"title":"Man's Search for Meaning","author":"Viktor Frankl"},{"title":"Never Let Me Go","author":"Kazuo Ishiguro"},{"title":"Autumn","author":"Ali Smith"},{"title":"Quintland Sisters","author":"Shelley Wood"},{"title":"The Heart of the Matter","author":"Graham Greene"},{"title":"A Gentleman in Moscow","author":"Amor Towles"},{"title":"The Organist","author":"Mark Abley"},{"title":"Educated","author":"Tara Westover"},{"title":"The Road to Character","author":"David Brooks"}]},{"id":"2020-21","label":"2020-2021","books":[{"title":"Orlando","author":"Virginia Woolf"},{"title":"Like Water for Chocolate","author":"Laura Esquivel"},{"title":"The Summer Book","author":"Tove Jansson"},{"title":"The Prime of Miss Jean Brodie","author":"Muriel Spark"},{"title":"Nearly Normal Family","author":"M. T. Edvardsson"},{"title":"Brick Lane","author":"Monica Ali"},{"title":"The Overstory","author":"Richard Powers"},{"title":"Hamnet","author":"Maggie O'Farrell"}]},{"id":"2021-22","label":"2021-2022","books":[{"title":"The Sweetness of Water","author":"Nathan Harris"},{"title":"Becoming Mrs. Lewis","author":"Patti Callahan"},{"title":"Real Estate","author":"Deborah Levy"},{"title":"Shuggie Bain","author":"Douglas Stuart"},{"title":"Winter in Sokcho","author":"Elisa Shua Dusapin"},{"title":"Where the Crawdads Sing","author":"Delia Owens"},{"title":"Clara a20/21 Highway","author":"Amor Towles"},{"title":"The Paris Library","author":"Janet Skeslien Charles"}]},{"id":"2022-23","label":"2022-2023","books":[{"title":"The Sentence","author":"Louise Erdrich"},{"title":"Wan","author":"Dawn Promislow"},{"title":"Dictionary of Lost Words","author":"Pip Williams"},{"title":"A Month in the Country","author":"J. L. Carr"},{"title":"Their Eyes Were Watching God","author":"Zora Neale Hurston"},{"title":"The Reading List","author":"Sara Nisha Adams"},{"title":"Happening","author":"Annie Ernaux"}]},{"id":"2023-24","label":"2023-2024","books":[{"title":"Lessons in Chemistry","author":"Bonnie Garmus"},{"title":"The Island of Missing Trees","author":"Elif Shafak"},{"title":"The Beekeeper of Aleppo","author":"Christy Lefteri"},{"title":"Solito: A Memoir","author":"Javier Zamora"},{"title":"An Island","author":"Karen Jennings"},{"title":"The World and All It Holds","author":"Aleksandar Hemon"},{"title":"American Ramble: A Walk of Memory and Renewal"}]},{"id":"2024-25","label":"2024-2025","books":[{"title":"Woman, Watching: Louise de Kiriline Lawrence and the Songbirds of Pimisi Bay","author":"Marilyn Simonds","date":"Nov 2024"},{"title":"Kairos","author":"Jenny Erpenbeck","date":"Dec 2024"},{"title":"Brooklyn","author":"Colm Tóibín","date":"Jan 2025"},{"title":"Long Island","author":"Colm Tóibín","date":"Jan 2025"},{"title":"The Women","author":"Kristin Hannah","date":"March 2025"},{"title":"Chancellor: The Remarkable Odyssey of Angela Merkel","author":"Kati Marton","date":"April 2025"},{"title":"Olive Kitteridge","author":"Elizabeth Strout","date":"May 2025"},{"title":"The War We Won Apart","author":"Nahlah Ayed"}]},{"id":"2025-26","label":"2025-2026","books":[{"title":"Intermezzo","author":"Sally Rooney","date":"Sept"},{"title":"Who Is Government? The Untold Story of Public Service","author":"Michael Lewis (ed.)","date":"Nov 2025"},{"title":"Victory City","author":"Salman Rushdie","date":"Dec 2025"},{"title":"The House of Doors","author":"Tan Twan Eng","date":"Jan 2026"},{"title":"Remarkably Bright Creatures","author":"Shelby Van Pelt","date":"May 2026"}]}],"unplaced":[{"title":"The Line of Beauty","author":"Alan Hollinghurst","date":"2006?"}]};
+
+const seasons = DATA.seasons.slice().reverse();
+if (DATA.unplaced && DATA.unplaced.length) seasons.push({id:"unplaced", label:"Year not recorded", books:DATA.unplaced});
+
+const norm = s => (s||"").normalize("NFD").replace(/\p{M}/gu,"").toLowerCase();
+const el = (tag, cls, text) => { const e=document.createElement(tag); if(cls) e.className=cls; if(text!=null) e.textContent=text; return e; };
+const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+const PALETTE = ["#1F3A5F","#7B2D3B","#3C6E57","#D4A02E","#6A5A8C","#2E7F86","#8C5E3C"];
+const hash = s => { let h=5381; for (const c of s) h=(((h<<5)+h+c.charCodeAt(0))>>>0); return h; };
+const shortLabel = s => s.id==="pre-2004" ? "Before 2004" : s.id==="unplaced" ? "No year" : s.id.replace(/^\d\d(\d\d)-(\d\d)$/,"$1-$2");
+
+let total = 0;
+seasons.forEach((s,si)=>{ s.books.forEach((b,bi)=>{ b.id=`b-${si}-${bi}`; total++; }); });
+
+// lede
+document.getElementById("lede").textContent = `${total} books read together since 1997.`;
+
+// shelf
+const shelf = document.getElementById("shelf");
+seasons.forEach(s=>{
+  const g = el("div","group");
+  const perRow = Math.ceil(s.books.length / Math.ceil(s.books.length/28));
+  let row = null;
+  s.books.forEach((b,i)=>{
+    if (i % perRow === 0) { row = el("div","row"); g.appendChild(row); }
+    const h = hash(b.title), sp = el("span","spine");
+    sp.style.width = (6 + h%3) + "px";
+    sp.style.height = (20 + (h>>>3)%18) + "px";
+    sp.style.background = PALETTE[(h>>>5)%PALETTE.length];
+    sp.dataset.id = b.id;
+    b.spine = sp; row.appendChild(sp);
+  });
+  g.append(el("div","glabel",shortLabel(s)));
+  shelf.appendChild(g);
+});
+
+// list
+const list = document.getElementById("list");
+const jump = document.getElementById("jump");
+seasons.forEach(s=>{
+  const sec = el("section","season"); sec.id = "s-"+s.id;
+  const head = el("div"); head.append(el("h2",null,s.label), el("p","count",`${s.books.length} ${s.books.length===1?"book":"books"}`));
+  const ul = el("ul","books");
+  s.books.forEach(b=>{
+    const li = el("li","book"); li.id = b.id;
+    const left = el("div"), t = el("span","t",b.title);
+    if (b.format==="film") t.append(el("span","tag","film"));
+    left.appendChild(t);
+    if (b.author) left.appendChild(el("span","a",b.author));
+    li.appendChild(left);
+    if (b.date) li.appendChild(el("span","d",b.date));
+    b.el = li; ul.appendChild(li);
+  });
+  sec.append(head, ul); s.el = sec; list.appendChild(sec);
+  const o = el("option",null,`${s.label} (${s.books.length})`); o.value = s.id; jump.appendChild(o);
+});
+
+// most-read authors
+const byAuthor = new Map();
+seasons.forEach(s=>s.books.forEach(b=>{ if(!b.author) return; if(!byAuthor.has(b.author)) byAuthor.set(b.author,new Set()); byAuthor.get(b.author).add(norm(b.title)); }));
+const frequent = [...byAuthor].map(([a,t])=>[a,t.size]).filter(x=>x[1]>=3).sort((x,y)=>y[1]-x[1]||x[0].localeCompare(y[0]));
+const authorsEl = document.getElementById("authors"), authorsSec = document.getElementById("authors-sec");
+frequent.forEach(([a,n])=>{ const li=el("li"); li.append(el("span",null,a), el("span","d",String(n))); authorsEl.appendChild(li); });
+if (!frequent.length) authorsSec.hidden = true;
+
+// search
+const q = document.getElementById("q"), status = document.getElementById("status");
+function apply(){
+  const term = norm(q.value.trim());
+  let n = 0;
+  seasons.forEach(s=>{
+    let vis = 0;
+    s.books.forEach(b=>{
+      const m = !term || norm(b.title+" "+(b.author||"")).includes(term);
+      b.el.hidden = !m; b.spine.classList.toggle("dim", !m);
+      if (m) { vis++; n++; }
+    });
+    s.el.hidden = vis===0;
+  });
+  authorsSec.hidden = !!term || !frequent.length;
+  status.textContent = term ? (n ? `${n} ${n===1?"book matches":"books match"}.` : "No books match. Try part of a title or an author's surname.") : "";
+}
+q.addEventListener("input", apply);
+
+// jump to season
+jump.addEventListener("change", ()=>{
+  const s = seasons.find(x=>x.id===jump.value); if(!s) return;
+  if (q.value){ q.value=""; apply(); }
+  s.el.scrollIntoView({behavior: reduce?"auto":"smooth", block:"start"});
+  jump.value = "";
+});
+
+// shelf interaction
+const caption = document.getElementById("caption");
+const byId = new Map(); seasons.forEach(s=>s.books.forEach(b=>byId.set(b.id,b)));
+function show(id){
+  const b = byId.get(id); if(!b) return;
+  caption.textContent = ""; const st = el("strong",null,b.title); caption.append(st, b.author ? ", "+b.author : "");
+}
+shelf.addEventListener("mouseover", e=>{ const sp=e.target.closest(".spine"); if(sp) show(sp.dataset.id); });
+shelf.addEventListener("click", e=>{
+  const sp = e.target.closest(".spine"); if(!sp) return;
+  show(sp.dataset.id);
+  if (q.value){ q.value=""; apply(); }
+  const li = document.getElementById(sp.dataset.id);
+  li.scrollIntoView({behavior: reduce?"auto":"smooth", block:"center"});
+  li.classList.remove("flash"); void li.offsetWidth; li.classList.add("flash");
+});
+</script>
+</body>
+</html>
