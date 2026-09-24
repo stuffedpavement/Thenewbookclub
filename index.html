@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>The New Bookclub</title>
-<meta name="description" content="Every book The New Bookclub has read together, season by season.">
+<meta name="description" content="Every book The New Bookclub has read together, season by season, with search and charts.">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%93%9A%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -13,6 +13,7 @@
 :root{
   --paper:#F2F4F1; --ink:#1B2430; --muted:#5B6673; --line:#D3D9D5;
   --navy:#1F3A5F; --gold:#D4A02E; --field:#FFFFFF;
+  --fic:#2F5D8C; --nf:#D4A02E; --fem:#9C3B4E; --male:#2E7F86; --eng:#6A5A8C; --trans:#D4A02E; --unk:#9AA5B1;
   --serif:"Young Serif", Georgia, "Times New Roman", serif;
   --sans:"Instrument Sans", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
 }
@@ -23,28 +24,53 @@
 html{scroll-padding-top:1rem}
 body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:1.0625rem;line-height:1.5;-webkit-text-size-adjust:100%}
 .wrap{max-width:60rem;margin:0 auto;padding:0 1.25rem}
-header{padding:clamp(2rem,6vw,4rem) 0 1.5rem}
+header{padding:clamp(2rem,6vw,4rem) 0 .5rem}
 h1{font-family:var(--serif);font-weight:400;color:var(--navy);font-size:clamp(2.6rem,9vw,5rem);line-height:1;letter-spacing:-.02em;margin:0 0 .9rem}
 .lede{margin:0;color:var(--muted);font-size:1.15rem;max-width:32rem}
+button{font:inherit}
+:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
 
 /* shelf */
-.shelf-wrap{margin:1.25rem 0 0}
+.shelf-wrap{margin:1.75rem 0 0}
 #shelf{display:flex;flex-wrap:wrap;gap:.9rem 1.1rem;align-items:flex-end}
 .group{display:flex;flex-direction:column}
 .row{display:flex;align-items:flex-end;gap:2px;padding:0 2px;border-bottom:4px solid var(--navy);margin-top:.35rem}
-.spine{display:block;border-radius:2px 2px 0 0;cursor:pointer;transition:opacity .15s}
+.spine{display:block;border-radius:2px 2px 0 0;cursor:pointer;transition:opacity .15s,background-color .25s}
 .spine.dim{opacity:.14}
 .glabel{font-size:.72rem;color:var(--muted);margin-top:.3rem;white-space:nowrap}
-#caption{min-height:1.6rem;margin:.9rem 0 0;font-size:.95rem;color:var(--muted)}
+.shelf-tools{display:flex;flex-wrap:wrap;align-items:center;gap:.4rem .5rem;margin:1rem 0 0;font-size:.9rem;color:var(--muted)}
+.seg{border:1.5px solid var(--line);background:var(--field);color:var(--ink);border-radius:999px;padding:.25rem .7rem;cursor:pointer;min-height:2.2rem;font-size:.88rem}
+.seg[aria-pressed="true"]{background:var(--navy);border-color:var(--navy);color:var(--paper)}
+#legend{display:flex;flex-wrap:wrap;gap:.3rem 1rem;margin:.6rem 0 0;font-size:.88rem;color:var(--muted)}
+#legend[hidden]{display:none}
+.sw{display:inline-block;width:.8rem;height:.8rem;border-radius:2px;margin-right:.35rem;vertical-align:-.05em}
+#caption{min-height:1.6rem;margin:.7rem 0 0;font-size:.95rem;color:var(--muted)}
 #caption strong{color:var(--ink);font-weight:600}
 
+/* tabs */
+.tabs{display:flex;gap:.4rem;border-bottom:2px solid var(--navy);margin:1.5rem 0 0}
+.tab{flex:1 1 0;max-width:16rem;background:var(--field);border:1.5px solid var(--line);border-bottom:0;border-radius:10px 10px 0 0;margin-bottom:-2px;padding:.75rem .4rem;min-height:3rem;color:var(--muted);font-weight:600;font-size:1rem;text-align:center;cursor:pointer;white-space:nowrap}
+.tab:hover{color:var(--ink)}
+.tab[aria-selected="true"]{background:var(--navy);border-color:var(--navy);color:var(--paper)}
+[role="tabpanel"][hidden]{display:none}
+
 /* toolbar */
-.tools{display:flex;flex-wrap:wrap;gap:.75rem;margin:1.5rem 0 .5rem}
-.tools input,.tools select{font:inherit;color:var(--ink);background:var(--field);border:1.5px solid var(--line);border-radius:6px;padding:.7rem .9rem;min-height:2.9rem}
+.tools{display:flex;flex-wrap:wrap;gap:.75rem;margin:1.25rem 0 .25rem}
+.tools input,.tools select,.fgrid select{font:inherit;color:var(--ink);background:var(--field);border:1.5px solid var(--line);border-radius:6px;padding:.7rem .9rem;min-height:2.9rem}
 .tools input{flex:1 1 14rem}
 .tools select{flex:0 1 13rem}
-.tools :focus-visible{outline:3px solid var(--gold);outline-offset:2px}
-#status{min-height:1.4rem;margin:.25rem 0 0;color:var(--muted);font-size:.95rem}
+details.filters{margin:.25rem 0 0}
+details.filters summary::before{content:"\25B8";font-size:.85em}
+details.filters[open] summary::before{content:"\25BE"}
+details.filters summary{display:inline-flex;list-style:none;align-items:center;gap:.5rem;cursor:pointer;min-height:2.6rem;padding:0 .2rem;color:var(--navy);font-weight:600}
+.fgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(11rem,1fr));gap:.75rem;padding:.4rem 0 .6rem}
+.fgrid label{display:flex;flex-direction:column;gap:.25rem;font-size:.85rem;color:var(--muted)}
+.fgrid select{width:100%}
+.chips{display:flex;flex-wrap:wrap;gap:.5rem;margin:.4rem 0 0}
+.chips:empty{display:none}
+.chip{font-size:.88rem;background:var(--field);color:var(--ink);border:1.5px solid var(--line);border-radius:999px;padding:.3rem .8rem;cursor:pointer;min-height:2.2rem}
+.chip:hover{border-color:var(--navy)}
+#status{min-height:1.4rem;margin:.6rem 0 0;color:var(--muted);font-size:.95rem}
 
 /* seasons */
 .season{display:grid;grid-template-columns:1fr;gap:.6rem;padding:1.75rem 0 1.25rem;border-top:1px solid var(--line)}
@@ -56,6 +82,7 @@ h1{font-family:var(--serif);font-weight:400;color:var(--navy);font-size:clamp(2.
 .book:last-child{border-bottom:0}
 .t{font-weight:600}
 .a{display:block;color:var(--muted);font-size:.95rem}
+.m{display:block;color:var(--muted);font-size:.84rem;margin-top:.1rem}
 .d{color:var(--muted);font-size:.9rem;white-space:nowrap;text-align:right}
 .tag{display:inline-block;margin-left:.5rem;padding:0 .4rem;border:1px solid var(--line);border-radius:4px;font-size:.75rem;font-weight:500;color:var(--muted);vertical-align:.1em}
 .book.flash{animation:flash 2s ease-out}
@@ -64,68 +91,164 @@ h1{font-family:var(--serif);font-weight:400;color:var(--navy);font-size:clamp(2.
   .season{grid-template-columns:12rem 1fr;gap:2rem}
   .season>div:first-child{position:sticky;top:1rem;align-self:start}
 }
-.authors{list-style:none;margin:0;padding:0}
-.authors li{display:flex;justify-content:space-between;gap:1rem;padding:.5rem .4rem;border-bottom:1px solid var(--line)}
-.authors li:last-child{border-bottom:0}
-.authors[hidden]{display:none}
-footer{padding:2rem 0 3rem;border-top:1px solid var(--line);color:var(--muted);font-size:.95rem}
-footer p{max-width:36rem;margin:.25rem 0}
+
+/* insights */
+.intro{margin:1.5rem 0 1rem;font-size:1.1rem;max-width:42rem}
+.grid{display:grid;grid-template-columns:minmax(0,1fr);gap:0 3rem}
+@media (min-width:860px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.chart{padding:1.5rem 0;border-top:1px solid var(--line)}
+.chart.wide{grid-column:1/-1}
+.chart h3{font-family:var(--serif);font-weight:400;font-size:1.3rem;margin:0 0 .25rem;color:var(--navy)}
+.sub{margin:0 0 1rem;color:var(--muted);font-size:.92rem}
+.stackrow{margin:0 0 1rem}
+.stackrow .lab{font-size:.88rem;color:var(--muted);margin:0 0 .3rem}
+.stack{display:flex;gap:2px;height:2.6rem}
+.stackcap{margin:.3rem 0 0;font-size:.85rem;color:var(--muted)}
+.stack button{border:0;color:#fff;font-size:.85rem;font-weight:600;cursor:pointer;padding:0 .5rem;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;min-width:0;border-radius:4px}
+.stack button.nf,.stack button.trans{color:#1B2430}
+.stack button:hover{filter:brightness(1.08)}
+.hbar{list-style:none;margin:0;padding:0}
+.hbar button{display:grid;grid-template-columns:minmax(5.5rem,8rem) 1fr 2rem;gap:.6rem;align-items:center;width:100%;background:none;border:0;padding:.3rem .2rem;color:var(--ink);text-align:left;cursor:pointer;border-radius:4px}
+.hbar button:hover{background:color-mix(in srgb,var(--navy) 8%,transparent)}
+.hbar .track{height:.85rem}
+.hbar .bar{display:block;height:100%;border-radius:3px;background:var(--bar,var(--fic))}
+.hbar .n{color:var(--muted);font-size:.9rem;text-align:right}
+.cols{display:flex;gap:3px;align-items:flex-end;position:relative}
+.col{flex:1 1 0;min-width:0;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;background:none;border:0;padding:0;color:var(--ink);cursor:pointer}
+.col .v{font-size:.72rem;color:var(--muted);height:1rem;line-height:1rem}
+.col .bar{display:block;width:100%;background:var(--bar,var(--fic));border-radius:3px 3px 0 0;height:calc(var(--h) * 8rem);min-height:2px}
+.col .l{font-size:.68rem;color:var(--muted);margin-top:.3rem;min-height:1.1rem;line-height:1.1;text-align:center}
+.col:hover .bar{filter:brightness(1.12)}
+.col .stk{display:flex;flex-direction:column;width:100%;height:8rem;border-radius:3px 3px 0 0;overflow:hidden}
+.col .stk i{display:block}
+.col .stk .fm{background:var(--fem)}
+.col .stk .ml{background:var(--male)}
+.cols.half::before{content:"";position:absolute;left:0;right:0;bottom:calc(1.4rem + 4rem);border-top:1px dashed var(--ink);opacity:.55;pointer-events:none;z-index:1}
+.legend{margin:.9rem 0 0;font-size:.88rem;color:var(--muted)}
+.legend span.k{margin-right:1rem;white-space:nowrap}
+.more{margin:.6rem 0 0;color:var(--muted);font-size:.9rem}
+
+footer{padding:2rem 0 3rem;border-top:1px solid var(--line);color:var(--muted);font-size:.95rem;margin-top:1rem}
+footer p{max-width:38rem;margin:.25rem 0}
 .skip{position:absolute;left:-999px}
 .skip:focus{left:1rem;top:1rem;background:var(--field);padding:.5rem .8rem;z-index:5}
 @media (prefers-reduced-motion:reduce){.book.flash{animation:none;outline:2px solid var(--gold)}.spine{transition:none}}
 </style>
 </head>
 <body>
-<a class="skip" href="#list">Skip to the list</a>
+<a class="skip" href="#panel-books">Skip to the list</a>
 <div class="wrap">
 <header>
   <h1>The New Bookclub</h1>
   <p class="lede" id="lede">Every book we have read together.</p>
-  <div class="tools" role="search">
-    <input id="q" type="search" placeholder="Search by title or author" aria-label="Search by title or author" autocomplete="off">
-    <select id="jump" aria-label="Jump to a season"><option value="">Jump to a season</option></select>
-  </div>
-  <p id="status" aria-live="polite"></p>
   <div class="shelf-wrap">
     <div id="shelf" role="img" aria-label="A shelf with one spine for every book we have read, grouped by season, most recent first"></div>
+    <div class="shelf-tools" id="modes"><span>Colour the shelf by</span></div>
+    <p id="legend" hidden></p>
     <p id="caption" aria-hidden="true">Every spine is a book. Tap one to find it in the list.</p>
   </div>
 </header>
 
+<div class="tabs" role="tablist" aria-label="Sections">
+  <button class="tab" role="tab" id="tab-books" aria-controls="panel-books" aria-selected="true">Reading list</button>
+  <button class="tab" role="tab" id="tab-insights" aria-controls="panel-insights" aria-selected="false" tabindex="-1">By the numbers</button>
+</div>
+
 <main>
+<section id="panel-books" role="tabpanel" aria-labelledby="tab-books">
+  <div class="tools" id="tools" role="search">
+    <input id="q" type="search" placeholder="Search titles, authors, countries" aria-label="Search title, author, country, year or language" autocomplete="off">
+    <select id="jump" aria-label="Jump to a season"><option value="">Jump to a season</option></select>
+  </div>
+  <details class="filters" id="filters">
+    <summary>Filters <span id="fcount"></span></summary>
+    <div class="fgrid">
+      <label>Fiction or non-fiction<select id="f-category"></select></label>
+      <label>Author gender<select id="f-gender"></select></label>
+      <label>Author nationality<select id="f-nationality"></select></label>
+      <label>Original language<select id="f-language"></select></label>
+      <label>First published<select id="f-decade"></select></label>
+    </div>
+  </details>
+  <div class="chips" id="chips"></div>
+  <p id="status" aria-live="polite"></p>
   <div id="list"></div>
-  <section class="season" id="authors-sec">
-    <div><h2>Most-read authors</h2><p class="count">Three or more books</p></div>
-    <ul class="authors" id="authors"></ul>
-  </section>
+</section>
+
+<section id="panel-insights" role="tabpanel" aria-labelledby="tab-insights" hidden>
+  <p class="intro">Scroll down to see how our reading breaks down by fiction and non-fiction, author gender, author nationality, original language and year of first publication. Tap any bar or segment to see those books.</p>
+  <div class="grid" id="charts"></div>
+</section>
 </main>
 
 <footer>
   <p>This list was pieced together from the club's own records. Some early titles and dates may be missing or wrong.</p>
+  <p>Author details, publication years and languages were added afterwards from public sources and general knowledge, so a few may be wrong.</p>
 </footer>
 </div>
 
 <script>
-const DATA = {"seasons":[{"id":"pre-2004","label":"Before 2004","books":[{"title":"A Fine Balance","author":"Rohinton Mistry"},{"title":"A Heartbreaking Work of Staggering Genius","author":"Dave Eggers"},{"title":"A Map of the World","author":"Jane Hamilton","date":"1999-2000"},{"title":"The Year of the Death of Ricardo Reis","author":"José Saramago","date":"1999"},{"title":"American Pastoral","author":"Philip Roth"},{"title":"Anil's Ghost","author":"Michael Ondaatje","date":"2002?"},{"title":"Atonement","author":"Ian McEwan"},{"title":"Boom, Bust and Echo 2000","author":"David Foot"},{"title":"Captain Corelli's Mandolin","author":"Louis de Bernières","date":"1997-98"},{"title":"Collected Stories","author":"Donald Margulies"},{"title":"Crossing to Safety","author":"Wallace Stegner"},{"title":"Crow Lake","author":"Mary Lawson"},{"title":"Damascus Gate","author":"Robert Stone"},{"title":"Death Comes for the Archbishop","author":"Willa Cather","date":"1999-2000"},{"title":"Divine Secrets of the Ya-Ya Sisterhood","author":"Rebecca Wells"},{"title":"Don't Let's Go to the Dogs Tonight","author":"Alexandra Fuller"},{"title":"Ender's Game","author":"Orson Scott Card"},{"title":"Fall on Your Knees","author":"Ann-Marie MacDonald"},{"title":"Floating in My Mother's Palm","author":"Ursula Hegi"},{"title":"Fugitive Pieces","author":"Anne Michaels"},{"title":"House of Sand and Fog","author":"Andre Dubus III"},{"title":"Life of Pi","author":"Yann Martel"},{"title":"Lovely Bones","author":"Alice Sebold"},{"title":"Mercy Among the Children","author":"David Adams Richards"},{"title":"My Dream of You","author":"Nuala O'Faolain","date":"2002?"},{"title":"Not Wanted on the Voyage","author":"Timothy Findley"},{"title":"Paula","author":"Isabel Allende","date":"2002?"},{"title":"Perfume","author":"Patrick Süskind"},{"title":"Portrait of a Marriage","author":"Nigel Nicolson"},{"title":"She's Come Undone","author":"Wally Lamb"},{"title":"Tamarind Mem","author":"Anita Rau Badami"},{"title":"The Black Prince","author":"Iris Murdoch","date":"May 2003"},{"title":"The Book of Hours","author":"Michael Cunningham"},{"title":"The Corrections","author":"Jonathan Franzen"},{"title":"The Heart of the Matter","author":"Graham Greene","date":"2002?"},{"title":"The Many Lives and Secret Sorrows of Josephine B.","author":"Sandra Gulland"},{"title":"The Mark of an Angel","author":"Nancy Huston","date":"2000?"},{"title":"The Poisonwood Bible","author":"Barbara Kingsolver","date":"2000-01"},{"title":"The Red Tent","author":"Anita Diamant"},{"title":"The Scarlet Letter","author":"Nathaniel Hawthorne"},{"title":"The Secret River","author":"Kate Grenville"},{"title":"The Seven Storey Mountain","author":"Thomas Merton"},{"title":"The Stone Diaries","author":"Carol Shields","date":"March 2002"},{"title":"The Underpainter","author":"Jane Urquhart"},{"title":"To the Lighthouse","author":"Virginia Woolf"},{"title":"Underworld","author":"Don DeLillo"},{"title":"White Teeth","author":"Zadie Smith"},{"title":"Written on the Body","author":"Jeanette Winterson"}]},{"id":"2004-05","label":"2004-2005","books":[{"title":"The No. 1 Ladies' Detective Agency","author":"Alexander McCall Smith","date":"Jan 2004"},{"title":"George Orwell","author":"Gordon Bowker","date":"Feb 2004"},{"title":"Nine Parts of Desire","author":"Geraldine Brooks","date":"Feb 2005"},{"title":"No Crystal Stair","author":"May Ruth Sausfield","date":"March 2005"},{"title":"Tales of a Female Nomad: Living at Large in the World","author":"Rita Golden Gelman"},{"title":"The Cure for Death by Lightning","author":"Gail Anderson-Dargatz","date":"Sept 2004"},{"title":"The Da Vinci Code","author":"Dan Brown"},{"title":"The Kite Runner","author":"Khaled Hosseini","date":"May 2005"},{"title":"The Lost Garden","author":"Helen Humphreys","date":"2005"},{"title":"Two Solitudes","author":"Hugh MacLennan"}]},{"id":"2005-06","label":"2005-2006","books":[{"title":"A Room of One's Own","author":"Virginia Woolf","date":"Sept 2005"},{"title":"Bel Canto","author":"Ann Patchett"},{"title":"Beyond Black","author":"Hilary Mantel"},{"title":"Blindness","author":"José Saramago"},{"title":"Daisy Miller","author":"Henry James"},{"title":"May Sarton: A Poet's Life","author":"Lenora P. Blouin"},{"title":"Pride and Prejudice","author":"Jane Austen"},{"title":"Sweetness in the Belly","author":"Camilla Gibb"},{"title":"The Crazed","author":"Ha Jin"},{"title":"La Cucina","author":"Lily Prior"},{"title":"Reading Lolita in Tehran","author":"Azar Nafisi"}]},{"id":"2006-07","label":"2006-2007","books":[{"title":"A Complicated Kindness","author":"Miriam Toews","date":"Sept 2006"},{"title":"Beyond Black","author":"Hilary Mantel"},{"title":"Scar Tissue","author":"Michael Ignatieff","date":"Oct 2006"},{"title":"Skating to Antarctica","author":"Jenny Diski","date":"Feb 2007"},{"title":"Small Island","author":"Andrea Levy"},{"title":"Sweetness in the Belly","author":"Camilla Gibb","date":"March 2007"},{"title":"The Glass Castle","author":"Jeannette Walls"},{"title":"The Mermaid Chair","author":"Sue Monk Kidd","date":"2007"},{"title":"Eight Months on Ghazzah Street","author":"Hilary Mantel"}]},{"id":"2007-08","label":"2007-2008","books":[{"title":"The Master","author":"Colm Tóibín"},{"title":"A Question of Upbringing","author":"Anthony Powell"},{"title":"Extremely Loud and Incredibly Close","author":"Jonathan Safran Foer"},{"title":"A Man Without a Country","author":"Kurt Vonnegut"},{"title":"Suite Française","author":"Irène Némirovsky"},{"title":"Brideshead Revisited","author":"Evelyn Waugh"},{"title":"The Girls","author":"Lori Lansens"},{"title":"The Inheritance of Loss","author":"Kiran Desai"},{"title":"The Good Earth","author":"Pearl S. Buck"}]},{"id":"2008-09","label":"2008-2009","books":[{"title":"Middlesex","author":"Jeffrey Eugenides"},{"title":"The House of Mirth","author":"Edith Wharton"},{"title":"Mr. Pip","author":"Lloyd Jones"},{"title":"On Chesil Beach","author":"Ian McEwan"},{"title":"Arthur & George","author":"Julian Barnes"},{"title":"Love in the Time of Cholera","author":"Gabriel García Márquez"},{"title":"The Janissary Tree","author":"Jason Goodwin"},{"title":"Norwegian Wood","author":"Haruki Murakami"}]},{"id":"2009-10","label":"2009-2010","books":[{"title":"Almost","author":"Elizabeth Benedict"},{"title":"Larry's Party","author":"Carol Shields"},{"title":"Sometime Towards the End","author":"Diana Athill"},{"title":"The Book of Negroes","author":"Lawrence Hill"},{"title":"The Guernsey Literary and Potato Peel Society","author":"Mary Ann Shaffer & Annie Barrows"},{"title":"The Bend in the River","author":"V. S. Naipaul"},{"title":"White Tiger","author":"Aravind Adiga"},{"title":"Loving Frank","author":"Nancy Horan"}]},{"id":"2010-11","label":"2010-2011","books":[{"title":"Huckleberry Finn","author":"Mark Twain","date":"Sept 2010"},{"title":"Stoner","author":"John Williams","date":"Oct 2010"},{"title":"Out Stealing Horses","author":"Per Petterson","date":"Nov 2010"},{"title":"The Secret Scriptures","author":"Sebastian Barry","date":"Dec 2010"},{"title":"Arcadian Adventures with the Idle Rich","author":"Stephen Leacock","date":"Jan 2011"},{"title":"Tinkers","author":"Paul Harding","date":"Feb 2011"},{"title":"A Fortunate Life","author":"Albert Facey","date":"March 2011"},{"title":"The Girl Who Played with Fire","author":"Stieg Larsson","date":"April 2011"},{"title":"Lady Chatterley's Lover","author":"D. H. Lawrence","date":"May 2011","format":"film"}]},{"id":"2011-12","label":"2011-2012","books":[{"title":"Wait for Me!","author":"Deborah Mitford"},{"title":"The Shipping News","author":"Annie Proulx"},{"title":"Don Quixote","author":"Miguel de Cervantes"},{"title":"Astrid and Veronika","author":"Linda Olsson"},{"title":"A Good Death","author":"Elizabeth Ironside"},{"title":"We Need to Talk About Kevin","author":"Lionel Shriver"},{"title":"The Widow's Children","author":"Paula Fox"},{"title":"In the Country of Men","author":"Hisham Matar"}]},{"id":"2012-13","label":"2012-2013","books":[{"title":"Cutting for Stone","author":"Abraham Verghese"},{"title":"Let the Great World Spin","author":"Colum McCann"},{"title":"Swinging on a Star","author":"Patricia Bissonette"},{"title":"Travelling Light","author":"Agnes Henchey"},{"title":"The Submission","author":"Amy Waldman"},{"title":"The Sense of an Ending","author":"Julian Barnes"},{"title":"The Hare with Amber Eyes","author":"Edmund de Waal"},{"title":"Bride of New France","author":"Suzanne Desrochers"},{"title":"The Great Gatsby","author":"F. Scott Fitzgerald"},{"title":"The Navigator of New York","author":"Wayne Johnston"}]},{"id":"2013-14","label":"2013-2014","books":[{"title":"The Forgotten Garden","author":"Kate Morton"},{"title":"The Golden Spruce","author":"John Vaillant"},{"title":"The Cat's Table","author":"Michael Ondaatje"},{"title":"The Night Circus","author":"Erin Morgenstern"},{"title":"The Testament of Mary","author":"Colm Tóibín"},{"title":"A Prayer for Owen Meany","author":"John Irving"},{"title":"The Immortal Life of Henrietta Lacks","author":"Rebecca Skloot"},{"title":"The Cello Suites","author":"Eric Siblin"},{"title":"The Painted Veil","author":"W. Somerset Maugham","format":"film"}]},{"id":"2014-15","label":"2014-2015","books":[{"title":"Shantaram","author":"Gregory David Roberts"},{"title":"The Goldfinch","author":"Donna Tartt"},{"title":"In the Midst of Life","author":"Jennifer Worth"},{"title":"The Light Between Oceans","author":"M. L. Stedman"},{"title":"Selected Stories: The Best of Alice Munro","author":"Alice Munro"},{"title":"Where'd You Go, Bernadette","author":"Maria Semple"},{"title":"The Painted Girls","author":"Cathy Marie Buchanan"},{"title":"Never Mind","author":"Edward St Aubyn"},{"title":"A Tale of Two Cities","author":"Charles Dickens","format":"film"}]},{"id":"2015-16","label":"2015-2016","books":[{"title":"The Elegance of the Hedgehog","author":"Muriel Barbery"},{"title":"Italian Shoes","author":"Henning Mankell"},{"title":"The Piano Teacher","author":"Janice Y. K. Lee"},{"title":"A Death in the Family (My Struggle)","author":"Karl Ove Knausgaard"},{"title":"The Night Stages","author":"Jane Urquhart"},{"title":"All the Light We Cannot See","author":"Anthony Doerr"},{"title":"Middlemarch","author":"George Eliot"}]},{"id":"2016-17","label":"2016-2017","books":[{"title":"A Spool of Blue Thread","author":"Anne Tyler"},{"title":"The Ascent of Rum Doodle","author":"W. E. Bowman"},{"title":"The Blazing World","author":"Siri Hustvedt"},{"title":"My Brilliant Friend","author":"Elena Ferrante"},{"title":"A Good Man Is Hard to Find","author":"Flannery O'Connor"},{"title":"To Kill a Mockingbird","author":"Harper Lee"},{"title":"The Big Green Tent","author":"Ludmila Ulitskaya"}]},{"id":"2017-18","label":"2017-2018","books":[{"title":"Commonwealth","author":"Ann Patchett"},{"title":"A Very Close Conspiracy","author":"Jane Dunn"},{"title":"The Noise of Time","author":"Julian Barnes"},{"title":"The Uncommon Reader","author":"Alan Bennett"},{"title":"A Man Called Ove","author":"Fredrik Backman"},{"title":"The Infatuations","author":"Javier Marías"},{"title":"Stalin's Daughter","author":"Rosemary Sullivan"}]},{"id":"2018-19","label":"2018-2019","books":[{"title":"February","author":"Lisa Moore"},{"title":"Nothing to Envy","author":"Barbara Demick"},{"title":"My Name Is Red","author":"Orhan Pamuk"},{"title":"Killers of the Flower Moon","author":"David Grann"},{"title":"Wide Sargasso Sea","author":"Jean Rhys"},{"title":"One Hundred Years of Solitude","author":"Gabriel García Márquez"},{"title":"Americanah","author":"Chimamanda Ngozi Adichie"},{"title":"The Association of Small Bombs","author":"Karan Mahajan"}]},{"id":"2019-20","label":"2019-2020","books":[{"title":"Man's Search for Meaning","author":"Viktor Frankl"},{"title":"Never Let Me Go","author":"Kazuo Ishiguro"},{"title":"Autumn","author":"Ali Smith"},{"title":"Quintland Sisters","author":"Shelley Wood"},{"title":"The Heart of the Matter","author":"Graham Greene"},{"title":"A Gentleman in Moscow","author":"Amor Towles"},{"title":"The Organist","author":"Mark Abley"},{"title":"Educated","author":"Tara Westover"},{"title":"The Road to Character","author":"David Brooks"}]},{"id":"2020-21","label":"2020-2021","books":[{"title":"Orlando","author":"Virginia Woolf"},{"title":"Like Water for Chocolate","author":"Laura Esquivel"},{"title":"The Summer Book","author":"Tove Jansson"},{"title":"The Prime of Miss Jean Brodie","author":"Muriel Spark"},{"title":"Nearly Normal Family","author":"M. T. Edvardsson"},{"title":"Brick Lane","author":"Monica Ali"},{"title":"The Overstory","author":"Richard Powers"},{"title":"Hamnet","author":"Maggie O'Farrell"}]},{"id":"2021-22","label":"2021-2022","books":[{"title":"The Sweetness of Water","author":"Nathan Harris"},{"title":"Becoming Mrs. Lewis","author":"Patti Callahan"},{"title":"Real Estate","author":"Deborah Levy"},{"title":"Shuggie Bain","author":"Douglas Stuart"},{"title":"Winter in Sokcho","author":"Elisa Shua Dusapin"},{"title":"Where the Crawdads Sing","author":"Delia Owens"},{"title":"Clara a20/21 Highway","author":"Amor Towles"},{"title":"The Paris Library","author":"Janet Skeslien Charles"}]},{"id":"2022-23","label":"2022-2023","books":[{"title":"The Sentence","author":"Louise Erdrich"},{"title":"Wan","author":"Dawn Promislow"},{"title":"Dictionary of Lost Words","author":"Pip Williams"},{"title":"A Month in the Country","author":"J. L. Carr"},{"title":"Their Eyes Were Watching God","author":"Zora Neale Hurston"},{"title":"The Reading List","author":"Sara Nisha Adams"},{"title":"Happening","author":"Annie Ernaux"}]},{"id":"2023-24","label":"2023-2024","books":[{"title":"Lessons in Chemistry","author":"Bonnie Garmus"},{"title":"The Island of Missing Trees","author":"Elif Shafak"},{"title":"The Beekeeper of Aleppo","author":"Christy Lefteri"},{"title":"Solito: A Memoir","author":"Javier Zamora"},{"title":"An Island","author":"Karen Jennings"},{"title":"The World and All It Holds","author":"Aleksandar Hemon"},{"title":"American Ramble: A Walk of Memory and Renewal"}]},{"id":"2024-25","label":"2024-2025","books":[{"title":"Woman, Watching: Louise de Kiriline Lawrence and the Songbirds of Pimisi Bay","author":"Marilyn Simonds","date":"Nov 2024"},{"title":"Kairos","author":"Jenny Erpenbeck","date":"Dec 2024"},{"title":"Brooklyn","author":"Colm Tóibín","date":"Jan 2025"},{"title":"Long Island","author":"Colm Tóibín","date":"Jan 2025"},{"title":"The Women","author":"Kristin Hannah","date":"March 2025"},{"title":"Chancellor: The Remarkable Odyssey of Angela Merkel","author":"Kati Marton","date":"April 2025"},{"title":"Olive Kitteridge","author":"Elizabeth Strout","date":"May 2025"},{"title":"The War We Won Apart","author":"Nahlah Ayed"}]},{"id":"2025-26","label":"2025-2026","books":[{"title":"Intermezzo","author":"Sally Rooney","date":"Sept"},{"title":"Who Is Government? The Untold Story of Public Service","author":"Michael Lewis (ed.)","date":"Nov 2025"},{"title":"Victory City","author":"Salman Rushdie","date":"Dec 2025"},{"title":"The House of Doors","author":"Tan Twan Eng","date":"Jan 2026"},{"title":"Remarkably Bright Creatures","author":"Shelby Van Pelt","date":"May 2026"}]}],"unplaced":[{"title":"The Line of Beauty","author":"Alan Hollinghurst","date":"2006?"}]};
+const DATA = {"seasons":[{"id":"pre-2004","label":"Before 2004","books":[{"title":"A Fine Balance","author":"Rohinton Mistry","gender":"Male","nationality":"Canadian","year":1996,"language":"English","category":"Fiction"},{"title":"A Heartbreaking Work of Staggering Genius","author":"Dave Eggers","gender":"Male","nationality":"American","year":2000,"language":"English","category":"Non-fiction"},{"title":"A Map of the World","author":"Jane Hamilton","date":"1999-2000","gender":"Female","nationality":"American","year":1994,"language":"English","category":"Fiction"},{"title":"The Year of the Death of Ricardo Reis","author":"José Saramago","date":"1999","gender":"Male","nationality":"Portuguese","year":1984,"language":"Portuguese","category":"Fiction"},{"title":"American Pastoral","author":"Philip Roth","gender":"Male","nationality":"American","year":1997,"language":"English","category":"Fiction"},{"title":"Anil's Ghost","author":"Michael Ondaatje","date":"2002?","gender":"Male","nationality":"Canadian","year":2000,"language":"English","category":"Fiction"},{"title":"Atonement","author":"Ian McEwan","gender":"Male","nationality":"British","year":2001,"language":"English","category":"Fiction"},{"title":"Boom, Bust and Echo 2000","author":"David Foot","gender":"Male","nationality":"Canadian","year":1996,"language":"English","category":"Non-fiction"},{"title":"Captain Corelli's Mandolin","author":"Louis de Bernières","date":"1997-98","gender":"Male","nationality":"British","year":1994,"language":"English","category":"Fiction"},{"title":"Collected Stories","author":"Donald Margulies","gender":"Male","nationality":"American","year":1996,"language":"English","category":"Fiction"},{"title":"Crossing to Safety","author":"Wallace Stegner","gender":"Male","nationality":"American","year":1987,"language":"English","category":"Fiction"},{"title":"Crow Lake","author":"Mary Lawson","gender":"Female","nationality":"Canadian","year":2002,"language":"English","category":"Fiction"},{"title":"Damascus Gate","author":"Robert Stone","gender":"Male","nationality":"American","year":1998,"language":"English","category":"Fiction"},{"title":"Death Comes for the Archbishop","author":"Willa Cather","date":"1999-2000","gender":"Female","nationality":"American","year":1927,"language":"English","category":"Fiction"},{"title":"Divine Secrets of the Ya-Ya Sisterhood","author":"Rebecca Wells","gender":"Female","nationality":"American","year":1996,"language":"English","category":"Fiction"},{"title":"Don't Let's Go to the Dogs Tonight","author":"Alexandra Fuller","gender":"Female","nationality":"British","year":2001,"language":"English","category":"Non-fiction"},{"title":"Ender's Game","author":"Orson Scott Card","gender":"Male","nationality":"American","year":1985,"language":"English","category":"Fiction"},{"title":"Fall on Your Knees","author":"Ann-Marie MacDonald","gender":"Female","nationality":"Canadian","year":1996,"language":"English","category":"Fiction"},{"title":"Floating in My Mother's Palm","author":"Ursula Hegi","gender":"Female","nationality":"American","year":1990,"language":"English","category":"Fiction"},{"title":"Fugitive Pieces","author":"Anne Michaels","gender":"Female","nationality":"Canadian","year":1996,"language":"English","category":"Fiction"},{"title":"House of Sand and Fog","author":"Andre Dubus III","gender":"Male","nationality":"American","year":1999,"language":"English","category":"Fiction"},{"title":"Life of Pi","author":"Yann Martel","gender":"Male","nationality":"Canadian","year":2001,"language":"English","category":"Fiction"},{"title":"Lovely Bones","author":"Alice Sebold","gender":"Female","nationality":"American","year":2002,"language":"English","category":"Fiction"},{"title":"Mercy Among the Children","author":"David Adams Richards","gender":"Male","nationality":"Canadian","year":2000,"language":"English","category":"Fiction"},{"title":"My Dream of You","author":"Nuala O'Faolain","date":"2002?","gender":"Female","nationality":"Irish","year":2001,"language":"English","category":"Fiction"},{"title":"Not Wanted on the Voyage","author":"Timothy Findley","gender":"Male","nationality":"Canadian","year":1984,"language":"English","category":"Fiction"},{"title":"Paula","author":"Isabel Allende","date":"2002?","gender":"Female","nationality":"Chilean","year":1994,"language":"Spanish","category":"Non-fiction"},{"title":"Perfume","author":"Patrick Süskind","gender":"Male","nationality":"German","year":1985,"language":"German","category":"Fiction"},{"title":"Portrait of a Marriage","author":"Nigel Nicolson","gender":"Male","nationality":"British","year":1973,"language":"English","category":"Non-fiction"},{"title":"She's Come Undone","author":"Wally Lamb","gender":"Male","nationality":"American","year":1992,"language":"English","category":"Fiction"},{"title":"Tamarind Mem","author":"Anita Rau Badami","gender":"Female","nationality":"Canadian","year":1996,"language":"English","category":"Fiction"},{"title":"The Black Prince","author":"Iris Murdoch","date":"May 2003","gender":"Female","nationality":"British","year":1973,"language":"English","category":"Fiction"},{"title":"The Book of Hours","author":"Michael Cunningham","gender":"Male","nationality":"American","year":1998,"language":"English","category":"Fiction"},{"title":"The Corrections","author":"Jonathan Franzen","gender":"Male","nationality":"American","year":2001,"language":"English","category":"Fiction"},{"title":"The Heart of the Matter","author":"Graham Greene","date":"2002?","gender":"Male","nationality":"British","year":1948,"language":"English","category":"Fiction"},{"title":"The Many Lives and Secret Sorrows of Josephine B.","author":"Sandra Gulland","gender":"Female","nationality":"Canadian","year":1995,"language":"English","category":"Fiction"},{"title":"The Mark of an Angel","author":"Nancy Huston","date":"2000?","gender":"Female","nationality":"Canadian","year":1998,"language":"French","category":"Fiction"},{"title":"The Poisonwood Bible","author":"Barbara Kingsolver","date":"2000-01","gender":"Female","nationality":"American","year":1998,"language":"English","category":"Fiction"},{"title":"The Red Tent","author":"Anita Diamant","gender":"Female","nationality":"American","year":1997,"language":"English","category":"Fiction"},{"title":"The Scarlet Letter","author":"Nathaniel Hawthorne","gender":"Male","nationality":"American","year":1850,"language":"English","category":"Fiction"},{"title":"The Secret River","author":"Kate Grenville","gender":"Female","nationality":"Australian","year":2005,"language":"English","category":"Fiction"},{"title":"The Seven Storey Mountain","author":"Thomas Merton","gender":"Male","nationality":"American","year":1948,"language":"English","category":"Non-fiction"},{"title":"The Stone Diaries","author":"Carol Shields","date":"March 2002","gender":"Female","nationality":"Canadian","year":1993,"language":"English","category":"Fiction"},{"title":"The Underpainter","author":"Jane Urquhart","gender":"Female","nationality":"Canadian","year":1997,"language":"English","category":"Fiction"},{"title":"To the Lighthouse","author":"Virginia Woolf","gender":"Female","nationality":"British","year":1927,"language":"English","category":"Fiction"},{"title":"Underworld","author":"Don DeLillo","gender":"Male","nationality":"American","year":1997,"language":"English","category":"Fiction"},{"title":"White Teeth","author":"Zadie Smith","gender":"Female","nationality":"British","year":2000,"language":"English","category":"Fiction"},{"title":"Written on the Body","author":"Jeanette Winterson","gender":"Female","nationality":"British","year":1992,"language":"English","category":"Fiction"}]},{"id":"2004-05","label":"2004-2005","books":[{"title":"The No. 1 Ladies' Detective Agency","author":"Alexander McCall Smith","date":"Jan 2004","gender":"Male","nationality":"British","year":1998,"language":"English","category":"Fiction"},{"title":"George Orwell","author":"Gordon Bowker","date":"Feb 2004","gender":"Male","nationality":"British","year":2003,"language":"English","category":"Non-fiction"},{"title":"Nine Parts of Desire","author":"Geraldine Brooks","date":"Feb 2005","gender":"Female","nationality":"Australian","year":1995,"language":"English","category":"Non-fiction"},{"title":"No Crystal Stair","author":"May Ruth Sausfield","date":"March 2005","gender":"Female"},{"title":"Tales of a Female Nomad: Living at Large in the World","author":"Rita Golden Gelman","gender":"Female","nationality":"American","year":2001,"language":"English","category":"Non-fiction"},{"title":"The Cure for Death by Lightning","author":"Gail Anderson-Dargatz","date":"Sept 2004","gender":"Female","nationality":"Canadian","year":1996,"language":"English","category":"Fiction"},{"title":"The Da Vinci Code","author":"Dan Brown","gender":"Male","nationality":"American","year":2003,"language":"English","category":"Fiction"},{"title":"The Kite Runner","author":"Khaled Hosseini","date":"May 2005","gender":"Male","nationality":"American","year":2003,"language":"English","category":"Fiction"},{"title":"The Lost Garden","author":"Helen Humphreys","date":"2005","gender":"Female","nationality":"Canadian","year":2002,"language":"English","category":"Fiction"},{"title":"Two Solitudes","author":"Hugh MacLennan","gender":"Male","nationality":"Canadian","year":1945,"language":"English","category":"Fiction"}]},{"id":"2005-06","label":"2005-2006","books":[{"title":"A Room of One's Own","author":"Virginia Woolf","date":"Sept 2005","gender":"Female","nationality":"British","year":1929,"language":"English","category":"Non-fiction"},{"title":"Bel Canto","author":"Ann Patchett","gender":"Female","nationality":"American","year":2001,"language":"English","category":"Fiction"},{"title":"Beyond Black","author":"Hilary Mantel","gender":"Female","nationality":"British","year":2005,"language":"English","category":"Fiction"},{"title":"Blindness","author":"José Saramago","gender":"Male","nationality":"Portuguese","year":1995,"language":"Portuguese","category":"Fiction"},{"title":"Daisy Miller","author":"Henry James","gender":"Male","nationality":"American","year":1878,"language":"English","category":"Fiction"},{"title":"May Sarton: A Poet's Life","author":"Lenora P. Blouin","gender":"Female","language":"English","category":"Non-fiction"},{"title":"Pride and Prejudice","author":"Jane Austen","gender":"Female","nationality":"British","year":1813,"language":"English","category":"Fiction"},{"title":"Sweetness in the Belly","author":"Camilla Gibb","gender":"Female","nationality":"Canadian","year":2005,"language":"English","category":"Fiction"},{"title":"The Crazed","author":"Ha Jin","gender":"Male","nationality":"American","year":2002,"language":"English","category":"Fiction"},{"title":"La Cucina","author":"Lily Prior","gender":"Female","nationality":"British","year":2000,"language":"English","category":"Fiction"},{"title":"Reading Lolita in Tehran","author":"Azar Nafisi","gender":"Female","nationality":"American","year":2003,"language":"English","category":"Non-fiction"}]},{"id":"2006-07","label":"2006-2007","books":[{"title":"A Complicated Kindness","author":"Miriam Toews","date":"Sept 2006","gender":"Female","nationality":"Canadian","year":2004,"language":"English","category":"Fiction"},{"title":"Beyond Black","author":"Hilary Mantel","gender":"Female","nationality":"British","year":2005,"language":"English","category":"Fiction"},{"title":"Scar Tissue","author":"Michael Ignatieff","date":"Oct 2006","gender":"Male","nationality":"Canadian","year":1993,"language":"English","category":"Fiction"},{"title":"Skating to Antarctica","author":"Jenny Diski","date":"Feb 2007","gender":"Female","nationality":"British","year":1997,"language":"English","category":"Non-fiction"},{"title":"Small Island","author":"Andrea Levy","gender":"Female","nationality":"British","year":2004,"language":"English","category":"Fiction"},{"title":"Sweetness in the Belly","author":"Camilla Gibb","date":"March 2007","gender":"Female","nationality":"Canadian","year":2005,"language":"English","category":"Fiction"},{"title":"The Glass Castle","author":"Jeannette Walls","gender":"Female","nationality":"American","year":2005,"language":"English","category":"Non-fiction"},{"title":"The Mermaid Chair","author":"Sue Monk Kidd","date":"2007","gender":"Female","nationality":"American","year":2005,"language":"English","category":"Fiction"},{"title":"Eight Months on Ghazzah Street","author":"Hilary Mantel","gender":"Female","nationality":"British","year":1988,"language":"English","category":"Fiction"},{"title":"The Line of Beauty","author":"Alan Hollinghurst","date":"2006","gender":"Male","nationality":"British","year":2004,"language":"English","category":"Fiction"}]},{"id":"2007-08","label":"2007-2008","books":[{"title":"The Master","author":"Colm Tóibín","gender":"Male","nationality":"Irish","year":2004,"language":"English","category":"Fiction"},{"title":"A Question of Upbringing","author":"Anthony Powell","gender":"Male","nationality":"British","year":1951,"language":"English","category":"Fiction"},{"title":"Extremely Loud and Incredibly Close","author":"Jonathan Safran Foer","gender":"Male","nationality":"American","year":2005,"language":"English","category":"Fiction"},{"title":"A Man Without a Country","author":"Kurt Vonnegut","gender":"Male","nationality":"American","year":2005,"language":"English","category":"Non-fiction"},{"title":"Suite Française","author":"Irène Némirovsky","gender":"Female","nationality":"French","year":2004,"language":"French","category":"Fiction"},{"title":"Brideshead Revisited","author":"Evelyn Waugh","gender":"Male","nationality":"British","year":1945,"language":"English","category":"Fiction"},{"title":"The Girls","author":"Lori Lansens","gender":"Female","nationality":"Canadian","year":2005,"language":"English","category":"Fiction"},{"title":"The Inheritance of Loss","author":"Kiran Desai","gender":"Female","nationality":"Indian","year":2006,"language":"English","category":"Fiction"},{"title":"The Good Earth","author":"Pearl S. Buck","gender":"Female","nationality":"American","year":1931,"language":"English","category":"Fiction"}]},{"id":"2008-09","label":"2008-2009","books":[{"title":"Middlesex","author":"Jeffrey Eugenides","gender":"Male","nationality":"American","year":2002,"language":"English","category":"Fiction"},{"title":"The House of Mirth","author":"Edith Wharton","gender":"Female","nationality":"American","year":1905,"language":"English","category":"Fiction"},{"title":"Mr. Pip","author":"Lloyd Jones","gender":"Male","nationality":"New Zealander","year":2006,"language":"English","category":"Fiction"},{"title":"On Chesil Beach","author":"Ian McEwan","gender":"Male","nationality":"British","year":2007,"language":"English","category":"Fiction"},{"title":"Arthur & George","author":"Julian Barnes","gender":"Male","nationality":"British","year":2005,"language":"English","category":"Fiction"},{"title":"Love in the Time of Cholera","author":"Gabriel García Márquez","gender":"Male","nationality":"Colombian","year":1985,"language":"Spanish","category":"Fiction"},{"title":"The Janissary Tree","author":"Jason Goodwin","gender":"Male","nationality":"British","year":2006,"language":"English","category":"Fiction"},{"title":"Norwegian Wood","author":"Haruki Murakami","gender":"Male","nationality":"Japanese","year":1987,"language":"Japanese","category":"Fiction"}]},{"id":"2009-10","label":"2009-2010","books":[{"title":"Almost","author":"Elizabeth Benedict","gender":"Female","nationality":"American","year":2001,"language":"English","category":"Fiction"},{"title":"Larry's Party","author":"Carol Shields","gender":"Female","nationality":"Canadian","year":1997,"language":"English","category":"Fiction"},{"title":"Sometime Towards the End","author":"Diana Athill","gender":"Female","nationality":"British","year":2008,"language":"English","category":"Non-fiction"},{"title":"The Book of Negroes","author":"Lawrence Hill","gender":"Male","nationality":"Canadian","year":2007,"language":"English","category":"Fiction"},{"title":"The Guernsey Literary and Potato Peel Society","author":"Mary Ann Shaffer & Annie Barrows","gender":"Female","nationality":"American","year":2008,"language":"English","category":"Fiction"},{"title":"The Bend in the River","author":"V. S. Naipaul","gender":"Male","nationality":"British","year":1979,"language":"English","category":"Fiction"},{"title":"White Tiger","author":"Aravind Adiga","gender":"Male","nationality":"Indian","year":2008,"language":"English","category":"Fiction"},{"title":"Loving Frank","author":"Nancy Horan","gender":"Female","nationality":"American","year":2007,"language":"English","category":"Fiction"}]},{"id":"2010-11","label":"2010-2011","books":[{"title":"Huckleberry Finn","author":"Mark Twain","date":"Sept 2010","gender":"Male","nationality":"American","year":1884,"language":"English","category":"Fiction"},{"title":"Stoner","author":"John Williams","date":"Oct 2010","gender":"Male","nationality":"American","year":1965,"language":"English","category":"Fiction"},{"title":"Out Stealing Horses","author":"Per Petterson","date":"Nov 2010","gender":"Male","nationality":"Norwegian","year":2003,"language":"Norwegian","category":"Fiction"},{"title":"The Secret Scriptures","author":"Sebastian Barry","date":"Dec 2010","gender":"Male","nationality":"Irish","year":2008,"language":"English","category":"Fiction"},{"title":"Arcadian Adventures with the Idle Rich","author":"Stephen Leacock","date":"Jan 2011","gender":"Male","nationality":"Canadian","year":1914,"language":"English","category":"Fiction"},{"title":"Tinkers","author":"Paul Harding","date":"Feb 2011","gender":"Male","nationality":"American","year":2009,"language":"English","category":"Fiction"},{"title":"A Fortunate Life","author":"Albert Facey","date":"March 2011","gender":"Male","nationality":"Australian","year":1981,"language":"English","category":"Non-fiction"},{"title":"The Girl Who Played with Fire","author":"Stieg Larsson","date":"April 2011","gender":"Male","nationality":"Swedish","year":2006,"language":"Swedish","category":"Fiction"},{"title":"Lady Chatterley's Lover","author":"D. H. Lawrence","date":"May 2011","format":"film","gender":"Male","nationality":"British","year":1928,"language":"English","category":"Fiction"}]},{"id":"2011-12","label":"2011-2012","books":[{"title":"Wait for Me!","author":"Deborah Mitford","gender":"Female","nationality":"British","year":2010,"language":"English","category":"Non-fiction"},{"title":"The Shipping News","author":"Annie Proulx","gender":"Female","nationality":"American","year":1993,"language":"English","category":"Fiction"},{"title":"Don Quixote","author":"Miguel de Cervantes","gender":"Male","nationality":"Spanish","year":1605,"language":"Spanish","category":"Fiction"},{"title":"Astrid and Veronika","author":"Linda Olsson","gender":"Female","nationality":"Swedish","year":2005,"language":"English","category":"Fiction"},{"title":"A Good Death","author":"Elizabeth Ironside","gender":"Female","nationality":"British","year":2000,"language":"English","category":"Fiction"},{"title":"We Need to Talk About Kevin","author":"Lionel Shriver","gender":"Female","nationality":"American","year":2003,"language":"English","category":"Fiction"},{"title":"The Widow's Children","author":"Paula Fox","gender":"Female","nationality":"American","year":1976,"language":"English","category":"Fiction"},{"title":"In the Country of Men","author":"Hisham Matar","gender":"Male","nationality":"British","year":2006,"language":"English","category":"Fiction"}]},{"id":"2012-13","label":"2012-2013","books":[{"title":"Cutting for Stone","author":"Abraham Verghese","gender":"Male","nationality":"American","year":2009,"language":"English","category":"Fiction"},{"title":"Let the Great World Spin","author":"Colum McCann","gender":"Male","nationality":"Irish","year":2009,"language":"English","category":"Fiction"},{"title":"Swinging on a Star","author":"Patricia Bissonette","gender":"Female"},{"title":"Travelling Light","author":"Agnes Henchey","gender":"Female"},{"title":"The Submission","author":"Amy Waldman","gender":"Female","nationality":"American","year":2011,"language":"English","category":"Fiction"},{"title":"The Sense of an Ending","author":"Julian Barnes","gender":"Male","nationality":"British","year":2011,"language":"English","category":"Fiction"},{"title":"The Hare with Amber Eyes","author":"Edmund de Waal","gender":"Male","nationality":"British","year":2010,"language":"English","category":"Non-fiction"},{"title":"Bride of New France","author":"Suzanne Desrochers","gender":"Female","nationality":"Canadian","year":2011,"language":"English","category":"Fiction"},{"title":"The Great Gatsby","author":"F. Scott Fitzgerald","gender":"Male","nationality":"American","year":1925,"language":"English","category":"Fiction"},{"title":"The Navigator of New York","author":"Wayne Johnston","gender":"Male","nationality":"Canadian","year":2002,"language":"English","category":"Fiction"}]},{"id":"2013-14","label":"2013-2014","books":[{"title":"The Forgotten Garden","author":"Kate Morton","gender":"Female","nationality":"Australian","year":2008,"language":"English","category":"Fiction"},{"title":"The Golden Spruce","author":"John Vaillant","gender":"Male","nationality":"Canadian","year":2005,"language":"English","category":"Non-fiction"},{"title":"The Cat's Table","author":"Michael Ondaatje","gender":"Male","nationality":"Canadian","year":2011,"language":"English","category":"Fiction"},{"title":"The Night Circus","author":"Erin Morgenstern","gender":"Female","nationality":"American","year":2011,"language":"English","category":"Fiction"},{"title":"The Testament of Mary","author":"Colm Tóibín","gender":"Male","nationality":"Irish","year":2012,"language":"English","category":"Fiction"},{"title":"A Prayer for Owen Meany","author":"John Irving","gender":"Male","nationality":"American","year":1989,"language":"English","category":"Fiction"},{"title":"The Immortal Life of Henrietta Lacks","author":"Rebecca Skloot","gender":"Female","nationality":"American","year":2010,"language":"English","category":"Non-fiction"},{"title":"The Cello Suites","author":"Eric Siblin","gender":"Male","nationality":"Canadian","year":2009,"language":"English","category":"Non-fiction"},{"title":"The Painted Veil","author":"W. Somerset Maugham","format":"film","gender":"Male","nationality":"British","year":1925,"language":"English","category":"Fiction"}]},{"id":"2014-15","label":"2014-2015","books":[{"title":"Shantaram","author":"Gregory David Roberts","gender":"Male","nationality":"Australian","year":2003,"language":"English","category":"Fiction"},{"title":"The Goldfinch","author":"Donna Tartt","gender":"Female","nationality":"American","year":2013,"language":"English","category":"Fiction"},{"title":"In the Midst of Life","author":"Jennifer Worth","gender":"Female","nationality":"British","year":2010,"language":"English","category":"Non-fiction"},{"title":"The Light Between Oceans","author":"M. L. Stedman","gender":"Female","nationality":"Australian","year":2012,"language":"English","category":"Fiction"},{"title":"Selected Stories: The Best of Alice Munro","author":"Alice Munro","gender":"Female","nationality":"Canadian","language":"English","category":"Fiction"},{"title":"Where'd You Go, Bernadette","author":"Maria Semple","gender":"Female","nationality":"American","year":2012,"language":"English","category":"Fiction"},{"title":"The Painted Girls","author":"Cathy Marie Buchanan","gender":"Female","nationality":"Canadian","year":2012,"language":"English","category":"Fiction"},{"title":"Never Mind","author":"Edward St Aubyn","gender":"Male","nationality":"British","year":1992,"language":"English","category":"Fiction"},{"title":"A Tale of Two Cities","author":"Charles Dickens","format":"film","gender":"Male","nationality":"British","year":1859,"language":"English","category":"Fiction"}]},{"id":"2015-16","label":"2015-2016","books":[{"title":"The Elegance of the Hedgehog","author":"Muriel Barbery","gender":"Female","nationality":"French","year":2006,"language":"French","category":"Fiction"},{"title":"Italian Shoes","author":"Henning Mankell","gender":"Male","nationality":"Swedish","year":2006,"language":"Swedish","category":"Fiction"},{"title":"The Piano Teacher","author":"Janice Y. K. Lee","gender":"Female","nationality":"American","year":2009,"language":"English","category":"Fiction"},{"title":"A Death in the Family (My Struggle)","author":"Karl Ove Knausgaard","gender":"Male","nationality":"Norwegian","year":2009,"language":"Norwegian","category":"Fiction"},{"title":"The Night Stages","author":"Jane Urquhart","gender":"Female","nationality":"Canadian","year":2015,"language":"English","category":"Fiction"},{"title":"All the Light We Cannot See","author":"Anthony Doerr","gender":"Male","nationality":"American","year":2014,"language":"English","category":"Fiction"},{"title":"Middlemarch","author":"George Eliot","gender":"Female","nationality":"British","year":1871,"language":"English","category":"Fiction"}]},{"id":"2016-17","label":"2016-2017","books":[{"title":"A Spool of Blue Thread","author":"Anne Tyler","gender":"Female","nationality":"American","year":2015,"language":"English","category":"Fiction"},{"title":"The Ascent of Rum Doodle","author":"W. E. Bowman","gender":"Male","nationality":"British","year":1956,"language":"English","category":"Fiction"},{"title":"The Blazing World","author":"Siri Hustvedt","gender":"Female","nationality":"American","year":2014,"language":"English","category":"Fiction"},{"title":"My Brilliant Friend","author":"Elena Ferrante","gender":"Female","nationality":"Italian","year":2011,"language":"Italian","category":"Fiction"},{"title":"A Good Man Is Hard to Find","author":"Flannery O'Connor","gender":"Female","nationality":"American","year":1955,"language":"English","category":"Fiction"},{"title":"To Kill a Mockingbird","author":"Harper Lee","gender":"Female","nationality":"American","year":1960,"language":"English","category":"Fiction"},{"title":"The Big Green Tent","author":"Ludmila Ulitskaya","gender":"Female","nationality":"Russian","year":2010,"language":"Russian","category":"Fiction"}]},{"id":"2017-18","label":"2017-2018","books":[{"title":"Commonwealth","author":"Ann Patchett","gender":"Female","nationality":"American","year":2016,"language":"English","category":"Fiction"},{"title":"A Very Close Conspiracy","author":"Jane Dunn","gender":"Female","nationality":"British","year":1990,"language":"English","category":"Non-fiction"},{"title":"The Noise of Time","author":"Julian Barnes","gender":"Male","nationality":"British","year":2016,"language":"English","category":"Fiction"},{"title":"The Uncommon Reader","author":"Alan Bennett","gender":"Male","nationality":"British","year":2007,"language":"English","category":"Fiction"},{"title":"A Man Called Ove","author":"Fredrik Backman","gender":"Male","nationality":"Swedish","year":2012,"language":"Swedish","category":"Fiction"},{"title":"The Infatuations","author":"Javier Marías","gender":"Male","nationality":"Spanish","year":2011,"language":"Spanish","category":"Fiction"},{"title":"Stalin's Daughter","author":"Rosemary Sullivan","gender":"Female","nationality":"Canadian","year":2015,"language":"English","category":"Non-fiction"}]},{"id":"2018-19","label":"2018-2019","books":[{"title":"February","author":"Lisa Moore","gender":"Female","nationality":"Canadian","year":2009,"language":"English","category":"Fiction"},{"title":"Nothing to Envy","author":"Barbara Demick","gender":"Female","nationality":"American","year":2009,"language":"English","category":"Non-fiction"},{"title":"My Name Is Red","author":"Orhan Pamuk","gender":"Male","nationality":"Turkish","year":1998,"language":"Turkish","category":"Fiction"},{"title":"Killers of the Flower Moon","author":"David Grann","gender":"Male","nationality":"American","year":2017,"language":"English","category":"Non-fiction"},{"title":"Wide Sargasso Sea","author":"Jean Rhys","gender":"Female","nationality":"British","year":1966,"language":"English","category":"Fiction"},{"title":"One Hundred Years of Solitude","author":"Gabriel García Márquez","gender":"Male","nationality":"Colombian","year":1967,"language":"Spanish","category":"Fiction"},{"title":"Americanah","author":"Chimamanda Ngozi Adichie","gender":"Female","nationality":"Nigerian","year":2013,"language":"English","category":"Fiction"},{"title":"The Association of Small Bombs","author":"Karan Mahajan","gender":"Male","nationality":"Indian","year":2016,"language":"English","category":"Fiction"}]},{"id":"2019-20","label":"2019-2020","books":[{"title":"Man's Search for Meaning","author":"Viktor Frankl","gender":"Male","nationality":"Austrian","year":1946,"language":"German","category":"Non-fiction"},{"title":"Never Let Me Go","author":"Kazuo Ishiguro","gender":"Male","nationality":"British","year":2005,"language":"English","category":"Fiction"},{"title":"Autumn","author":"Ali Smith","gender":"Female","nationality":"British","year":2016,"language":"English","category":"Fiction"},{"title":"Quintland Sisters","author":"Shelley Wood","gender":"Female","nationality":"Canadian","year":2019,"language":"English","category":"Fiction"},{"title":"The Heart of the Matter","author":"Graham Greene","gender":"Male","nationality":"British","year":1948,"language":"English","category":"Fiction"},{"title":"A Gentleman in Moscow","author":"Amor Towles","gender":"Male","nationality":"American","year":2016,"language":"English","category":"Fiction"},{"title":"The Organist","author":"Mark Abley","gender":"Male","nationality":"Canadian","year":2019,"language":"English","category":"Non-fiction"},{"title":"Educated","author":"Tara Westover","gender":"Female","nationality":"American","year":2018,"language":"English","category":"Non-fiction"},{"title":"The Road to Character","author":"David Brooks","gender":"Male","nationality":"American","year":2015,"language":"English","category":"Non-fiction"}]},{"id":"2020-21","label":"2020-2021","books":[{"title":"Orlando","author":"Virginia Woolf","gender":"Female","nationality":"British","year":1928,"language":"English","category":"Fiction"},{"title":"Like Water for Chocolate","author":"Laura Esquivel","gender":"Female","nationality":"Mexican","year":1989,"language":"Spanish","category":"Fiction"},{"title":"The Summer Book","author":"Tove Jansson","gender":"Female","nationality":"Finnish","year":1972,"language":"Swedish","category":"Fiction"},{"title":"The Prime of Miss Jean Brodie","author":"Muriel Spark","gender":"Female","nationality":"British","year":1961,"language":"English","category":"Fiction"},{"title":"Nearly Normal Family","author":"M. T. Edvardsson","gender":"Male","nationality":"Swedish","year":2018,"language":"Swedish","category":"Fiction"},{"title":"Brick Lane","author":"Monica Ali","gender":"Female","nationality":"British","year":2003,"language":"English","category":"Fiction"},{"title":"The Overstory","author":"Richard Powers","gender":"Male","nationality":"American","year":2018,"language":"English","category":"Fiction"},{"title":"Hamnet","author":"Maggie O'Farrell","gender":"Female","nationality":"British","year":2020,"language":"English","category":"Fiction"}]},{"id":"2021-22","label":"2021-2022","books":[{"title":"The Sweetness of Water","author":"Nathan Harris","gender":"Male","nationality":"American","year":2021,"language":"English","category":"Fiction"},{"title":"Becoming Mrs. Lewis","author":"Patti Callahan","gender":"Female","nationality":"American","year":2018,"language":"English","category":"Fiction"},{"title":"Real Estate","author":"Deborah Levy","gender":"Female","nationality":"British","year":2021,"language":"English","category":"Non-fiction"},{"title":"Shuggie Bain","author":"Douglas Stuart","gender":"Male","nationality":"British","year":2020,"language":"English","category":"Fiction"},{"title":"Winter in Sokcho","author":"Elisa Shua Dusapin","gender":"Female","nationality":"French","year":2016,"language":"French","category":"Fiction"},{"title":"Where the Crawdads Sing","author":"Delia Owens","gender":"Female","nationality":"American","year":2018,"language":"English","category":"Fiction"},{"title":"Clara a20/21 Highway","author":"Amor Towles","gender":"Male","nationality":"American","year":2021,"language":"English","category":"Fiction"},{"title":"The Paris Library","author":"Janet Skeslien Charles","gender":"Female","nationality":"American","year":2021,"language":"English","category":"Fiction"}]},{"id":"2022-23","label":"2022-2023","books":[{"title":"The Sentence","author":"Louise Erdrich","gender":"Female","nationality":"American","year":2021,"language":"English","category":"Fiction"},{"title":"Wan","author":"Dawn Promislow","gender":"Female","nationality":"Canadian","year":2022,"language":"English","category":"Fiction"},{"title":"Dictionary of Lost Words","author":"Pip Williams","gender":"Female","nationality":"Australian","year":2020,"language":"English","category":"Fiction"},{"title":"A Month in the Country","author":"J. L. Carr","gender":"Male","nationality":"British","year":1980,"language":"English","category":"Fiction"},{"title":"Their Eyes Were Watching God","author":"Zora Neale Hurston","gender":"Female","nationality":"American","year":1937,"language":"English","category":"Fiction"},{"title":"The Reading List","author":"Sara Nisha Adams","gender":"Female","nationality":"British","year":2021,"language":"English","category":"Fiction"},{"title":"Happening","author":"Annie Ernaux","gender":"Female","nationality":"French","year":2000,"language":"French","category":"Non-fiction"}]},{"id":"2023-24","label":"2023-2024","books":[{"title":"Lessons in Chemistry","author":"Bonnie Garmus","gender":"Female","nationality":"American","year":2022,"language":"English","category":"Fiction"},{"title":"The Island of Missing Trees","author":"Elif Shafak","gender":"Female","nationality":"British","year":2021,"language":"English","category":"Fiction"},{"title":"The Beekeeper of Aleppo","author":"Christy Lefteri","gender":"Female","nationality":"British","year":2019,"language":"English","category":"Fiction"},{"title":"Solito: A Memoir","author":"Javier Zamora","gender":"Male","nationality":"Salvadoran","year":2022,"language":"English","category":"Non-fiction"},{"title":"An Island","author":"Karen Jennings","gender":"Female","nationality":"South African","year":2020,"language":"English","category":"Fiction"},{"title":"The World and All It Holds","author":"Aleksandar Hemon","gender":"Male","nationality":"American","year":2023,"language":"English","category":"Fiction"},{"title":"American Ramble: A Walk of Memory and Renewal","author":"Neil King Jr.","gender":"Male","nationality":"American","year":2023,"language":"English","category":"Non-fiction"}]},{"id":"2024-25","label":"2024-2025","books":[{"title":"Woman, Watching: Louise de Kiriline Lawrence and the Songbirds of Pimisi Bay","author":"Merilyn Simonds","date":"Nov 2024","gender":"Female","nationality":"Canadian","year":2022,"language":"English","category":"Non-fiction"},{"title":"Kairos","author":"Jenny Erpenbeck","date":"Dec 2024","gender":"Female","nationality":"German","year":2021,"language":"German","category":"Fiction"},{"title":"Brooklyn","author":"Colm Tóibín","date":"Jan 2025","gender":"Male","nationality":"Irish","year":2009,"language":"English","category":"Fiction"},{"title":"Long Island","author":"Colm Tóibín","date":"Jan 2025","gender":"Male","nationality":"Irish","year":2024,"language":"English","category":"Fiction"},{"title":"The Women","author":"Kristin Hannah","date":"March 2025","gender":"Female","nationality":"American","year":2024,"language":"English","category":"Fiction"},{"title":"Chancellor: The Remarkable Odyssey of Angela Merkel","author":"Kati Marton","date":"April 2025","gender":"Female","nationality":"American","year":2021,"language":"English","category":"Non-fiction"},{"title":"Olive Kitteridge","author":"Elizabeth Strout","date":"May 2025","gender":"Female","nationality":"American","year":2008,"language":"English","category":"Fiction"},{"title":"The War We Won Apart","author":"Nahlah Ayed","gender":"Female","nationality":"Canadian","year":2024,"language":"English","category":"Non-fiction"}]},{"id":"2025-26","label":"2025-2026","books":[{"title":"Intermezzo","author":"Sally Rooney","date":"Sept","gender":"Female","nationality":"Irish","year":2024,"language":"English","category":"Fiction"},{"title":"Who Is Government? The Untold Story of Public Service","author":"Michael Lewis (ed.)","date":"Nov 2025","gender":"Male","nationality":"American","year":2020,"language":"English","category":"Non-fiction"},{"title":"Victory City","author":"Salman Rushdie","date":"Dec 2025","gender":"Male","nationality":"British","year":2023,"language":"English","category":"Fiction"},{"title":"The House of Doors","author":"Tan Twan Eng","date":"Jan 2026","gender":"Male","nationality":"Malaysian","year":2023,"language":"English","category":"Fiction"},{"title":"Remarkably Bright Creatures","author":"Shelby Van Pelt","date":"May 2026","gender":"Female","nationality":"American","year":2022,"language":"English","category":"Fiction"}]}],"unplaced":[]};
 
-const seasons = DATA.seasons.slice().reverse();
-if (DATA.unplaced && DATA.unplaced.length) seasons.push({id:"unplaced", label:"Year not recorded", books:DATA.unplaced});
+const C = {fic:"#2F5D8C", nf:"#D4A02E", fem:"#9C3B4E", male:"#2E7F86", eng:"#6A5A8C", trans:"#D4A02E", unk:"#9AA5B1"};
+const PALETTE = ["#1F3A5F","#7B2D3B","#3C6E57","#D4A02E","#6A5A8C","#2E7F86","#8C5E3C"];
+const DECADES = ["Before 1900","1900-1949","1950s","1960s","1970s","1980s","1990s","2000s","2010s","2020s"];
+const DECADE_SHORT = {"Before 1900":"Before 1900","1900-1949":"1900-49"};
 
 const norm = s => (s||"").normalize("NFD").replace(/\p{M}/gu,"").toLowerCase();
 const el = (tag, cls, text) => { const e=document.createElement(tag); if(cls) e.className=cls; if(text!=null) e.textContent=text; return e; };
+const $ = id => document.getElementById(id);
 const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
-const PALETTE = ["#1F3A5F","#7B2D3B","#3C6E57","#D4A02E","#6A5A8C","#2E7F86","#8C5E3C"];
 const hash = s => { let h=5381; for (const c of s) h=(((h<<5)+h+c.charCodeAt(0))>>>0); return h; };
+const decadeOf = y => y==null ? null : y<1900 ? "Before 1900" : y<1950 ? "1900-1949" : Math.floor(y/10)*10+"s";
+const pct = (n,t) => t ? Math.round(n*100/t) : 0;
+const plural = (n,one,many) => `${n} ${n===1?one:many}`;
+
+/* ---------- data ---------- */
+const seasons = DATA.seasons.slice().reverse();          // newest first
+if (DATA.unplaced && DATA.unplaced.length) seasons.push({id:"unplaced", label:"Year not recorded", books:DATA.unplaced});
+const all = [];
+seasons.forEach((s,si)=>s.books.forEach((b,bi)=>{
+  b.id = `b-${si}-${bi}`; b.season = s; b.decade = decadeOf(b.year);
+  b.hay = norm([b.title,b.author,b.nationality,b.language,b.year].filter(Boolean).join(" "));
+  all.push(b);
+}));
 const shortLabel = s => s.id==="pre-2004" ? "Before 2004" : s.id==="unplaced" ? "No year" : s.id.replace(/^\d\d(\d\d)-(\d\d)$/,"$1-$2");
+$("lede").textContent = `${all.length} books read together since the 1990s.`;
 
-let total = 0;
-seasons.forEach((s,si)=>{ s.books.forEach((b,bi)=>{ b.id=`b-${si}-${bi}`; total++; }); });
+/* ---------- filter state ---------- */
+const DEFAULTS = {q:"", category:"", gender:"", nationality:"", language:"", decade:""};
+const state = {...DEFAULTS};
+const FILTERS = [
+  {key:"category",   label:"Fiction or non-fiction", get:b=>b.category},
+  {key:"gender",     label:"Author gender",          get:b=>b.gender},
+  {key:"nationality",label:"Nationality",            get:b=>b.nationality},
+  {key:"language",   label:"Original language",      get:b=>b.language},
+  {key:"decade",     label:"First published",        get:b=>b.decade},
+];
+function matches(b){
+  const term = norm(state.q.trim());
+  if (term && !b.hay.includes(term)) return false;
+  if (state.category && b.category!==state.category) return false;
+  if (state.gender && b.gender!==state.gender) return false;
+  if (state.nationality && b.nationality!==state.nationality) return false;
+  if (state.language){
+    if (state.language==="__other"){ if(!b.language || b.language==="English") return false; }
+    else if (b.language!==state.language) return false;
+  }
+  if (state.decade && b.decade!==state.decade) return false;
+  return true;
+}
+const valueLabel = (key,val) => key==="language" && val==="__other" ? "Not English" : val;
 
-// lede
-document.getElementById("lede").textContent = `${total} books read together since 1997.`;
-
-// shelf
-const shelf = document.getElementById("shelf");
+/* ---------- shelf ---------- */
+const MODES = {
+  mixed:{label:"Mixed", color:b=>PALETTE[(hash(b.title)>>>5)%PALETTE.length], legend:null},
+  category:{label:"Fiction or non-fiction", color:b=>b.category==="Fiction"?C.fic:b.category==="Non-fiction"?C.nf:C.unk, legend:[["Fiction",C.fic],["Non-fiction",C.nf]]},
+  gender:{label:"Author gender", color:b=>b.gender==="Female"?C.fem:b.gender==="Male"?C.male:C.unk, legend:[["Women",C.fem],["Men",C.male]]},
+  language:{label:"Language", color:b=>!b.language?C.unk:b.language==="English"?C.eng:C.trans, legend:[["Written in English",C.eng],["Translated",C.trans]]},
+};
+const shelf = $("shelf");
 seasons.forEach(s=>{
   const g = el("div","group");
   const perRow = Math.ceil(s.books.length / Math.ceil(s.books.length/28));
@@ -135,27 +258,50 @@ seasons.forEach(s=>{
     const h = hash(b.title), sp = el("span","spine");
     sp.style.width = (6 + h%3) + "px";
     sp.style.height = (20 + (h>>>3)%18) + "px";
-    sp.style.background = PALETTE[(h>>>5)%PALETTE.length];
-    sp.dataset.id = b.id;
-    b.spine = sp; row.appendChild(sp);
+    sp.dataset.id = b.id; b.spine = sp; row.appendChild(sp);
   });
-  g.append(el("div","glabel",shortLabel(s)));
+  g.appendChild(el("div","glabel",shortLabel(s)));
   shelf.appendChild(g);
 });
+let mode = "mixed";
+function setMode(m){
+  mode = m;
+  all.forEach(b=>{ b.spine.style.background = MODES[m].color(b); });
+  document.querySelectorAll("#modes .seg").forEach(x=>x.setAttribute("aria-pressed", String(x.dataset.mode===m)));
+  const lg = $("legend"); lg.textContent = "";
+  const items = MODES[m].legend;
+  lg.hidden = !items;
+  if (items) items.forEach(([t,c])=>{ const k=el("span"); const sw=el("span","sw"); sw.style.background=c; k.append(sw,t); lg.appendChild(k); });
+}
+Object.entries(MODES).forEach(([k,v])=>{
+  const b = el("button","seg",v.label); b.type="button"; b.dataset.mode=k; b.addEventListener("click",()=>setMode(k));
+  $("modes").appendChild(b);
+});
+setMode("mixed");
 
-// list
-const list = document.getElementById("list");
-const jump = document.getElementById("jump");
+/* ---------- list ---------- */
+const list = $("list"), jump = $("jump");
+function metaLine(b){
+  const parts = [];
+  if (b.nationality) parts.push(`${b.nationality} author`);
+  const foreign = b.language && b.language!=="English";
+  if (b.year) parts.push(`first published ${b.year}${foreign?` in ${b.language}`:""}`);
+  else if (foreign) parts.push(`written in ${b.language}`);
+  return parts.join(", ");
+}
 seasons.forEach(s=>{
   const sec = el("section","season"); sec.id = "s-"+s.id;
-  const head = el("div"); head.append(el("h2",null,s.label), el("p","count",`${s.books.length} ${s.books.length===1?"book":"books"}`));
+  const head = el("div"); s.countEl = el("p","count");
+  head.append(el("h2",null,s.label), s.countEl);
   const ul = el("ul","books");
   s.books.forEach(b=>{
     const li = el("li","book"); li.id = b.id;
     const left = el("div"), t = el("span","t",b.title);
+    if (b.category==="Non-fiction") t.append(el("span","tag","non-fiction"));
     if (b.format==="film") t.append(el("span","tag","film"));
     left.appendChild(t);
     if (b.author) left.appendChild(el("span","a",b.author));
+    const m = metaLine(b); if (m) left.appendChild(el("span","m",m));
     li.appendChild(left);
     if (b.date) li.appendChild(el("span","d",b.date));
     b.el = li; ul.appendChild(li);
@@ -164,57 +310,223 @@ seasons.forEach(s=>{
   const o = el("option",null,`${s.label} (${s.books.length})`); o.value = s.id; jump.appendChild(o);
 });
 
-// most-read authors
-const byAuthor = new Map();
-seasons.forEach(s=>s.books.forEach(b=>{ if(!b.author) return; if(!byAuthor.has(b.author)) byAuthor.set(b.author,new Set()); byAuthor.get(b.author).add(norm(b.title)); }));
-const frequent = [...byAuthor].map(([a,t])=>[a,t.size]).filter(x=>x[1]>=3).sort((x,y)=>y[1]-x[1]||x[0].localeCompare(y[0]));
-const authorsEl = document.getElementById("authors"), authorsSec = document.getElementById("authors-sec");
-frequent.forEach(([a,n])=>{ const li=el("li"); li.append(el("span",null,a), el("span","d",String(n))); authorsEl.appendChild(li); });
-if (!frequent.length) authorsSec.hidden = true;
+/* ---------- filter controls ---------- */
+function countBy(fn){ const m=new Map(); all.forEach(b=>{ const v=fn(b); if(v!=null) m.set(v,(m.get(v)||0)+1); }); return m; }
+function fill(id, opts){
+  const sel = $(id); sel.appendChild(Object.assign(el("option",null,"Any"),{value:""}));
+  opts.forEach(([v,l])=>sel.appendChild(Object.assign(el("option",null,l),{value:v})));
+}
+const byCount = m => [...m].sort((a,b)=>b[1]-a[1]||a[0].localeCompare(b[0]));
+fill("f-category", byCount(countBy(b=>b.category)).map(([v,n])=>[v,`${v} (${n})`]));
+fill("f-gender",   [["Female",`Women (${countBy(b=>b.gender).get("Female")||0})`],["Male",`Men (${countBy(b=>b.gender).get("Male")||0})`]]);
+fill("f-nationality", byCount(countBy(b=>b.nationality)).map(([v,n])=>[v,`${v} (${n})`]));
+{
+  const langs = countBy(b=>b.language), nonEng = [...langs].filter(([l])=>l!=="English").reduce((a,x)=>a+x[1],0);
+  fill("f-language", [["English",`English (${langs.get("English")||0})`],["__other",`Any other language (${nonEng})`],
+    ...byCount(new Map([...langs].filter(([l])=>l!=="English"))).map(([v,n])=>[v,`${v} (${n})`])]);
+}
+{
+  const dc = countBy(b=>b.decade);
+  fill("f-decade", DECADES.filter(d=>dc.has(d)).map(d=>[d,`${d} (${dc.get(d)})`]));
+}
+FILTERS.forEach(f=>$("f-"+f.key).addEventListener("change",e=>{ state[f.key]=e.target.value; apply(); }));
 
-// search
-const q = document.getElementById("q"), status = document.getElementById("status");
+function syncControls(){
+  $("q").value = state.q;
+  FILTERS.forEach(f=>{ $("f-"+f.key).value = state[f.key]; });
+  const chips = $("chips"); chips.textContent = "";
+  let active = 0;
+  FILTERS.forEach(f=>{
+    if (!state[f.key]) return; active++;
+    const c = el("button","chip",`${f.label}: ${valueLabel(f.key,state[f.key])}  ×`); c.type="button";
+    c.setAttribute("aria-label",`Remove filter ${f.label}: ${valueLabel(f.key,state[f.key])}`);
+    c.addEventListener("click",()=>{ state[f.key]=""; apply(); });
+    chips.appendChild(c);
+  });
+  if (active || state.q.trim()){
+    const c = el("button","chip","Clear all"); c.type="button";
+    c.addEventListener("click",()=>{ Object.assign(state,DEFAULTS); apply(); });
+    chips.appendChild(c);
+  }
+  $("fcount").textContent = active ? `(${active} on)` : "";
+}
 function apply(){
-  const term = norm(q.value.trim());
   let n = 0;
   seasons.forEach(s=>{
     let vis = 0;
     s.books.forEach(b=>{
-      const m = !term || norm(b.title+" "+(b.author||"")).includes(term);
+      const m = matches(b);
       b.el.hidden = !m; b.spine.classList.toggle("dim", !m);
-      if (m) { vis++; n++; }
+      if (m){ vis++; n++; }
     });
     s.el.hidden = vis===0;
+    s.countEl.textContent = vis===s.books.length ? plural(vis,"book","books") : `${vis} of ${s.books.length} books`;
   });
-  authorsSec.hidden = !!term || !frequent.length;
-  status.textContent = term ? (n ? `${n} ${n===1?"book matches":"books match"}.` : "No books match. Try part of a title or an author's surname.") : "";
+  syncControls();
+  const any = FILTERS.some(f=>state[f.key]) || state.q.trim();
+  $("status").textContent = any ? (n ? `${plural(n,"book matches","books match")}.` : "No books match. Try fewer filters or part of a title or an author's surname.") : "";
 }
-q.addEventListener("input", apply);
-
-// jump to season
+$("q").addEventListener("input", e=>{ state.q = e.target.value; apply(); });
+function show(patch){            // used by charts: replace all filters, jump to the list
+  Object.assign(state, DEFAULTS, patch); apply(); showTab("books");
+  $("tools").scrollIntoView({behavior: reduce?"auto":"smooth", block:"start"});
+}
 jump.addEventListener("change", ()=>{
   const s = seasons.find(x=>x.id===jump.value); if(!s) return;
-  if (q.value){ q.value=""; apply(); }
+  if (Object.keys(DEFAULTS).some(k=>state[k])) { Object.assign(state,DEFAULTS); apply(); }
   s.el.scrollIntoView({behavior: reduce?"auto":"smooth", block:"start"});
   jump.value = "";
 });
 
-// shelf interaction
-const caption = document.getElementById("caption");
-const byId = new Map(); seasons.forEach(s=>s.books.forEach(b=>byId.set(b.id,b)));
-function show(id){
-  const b = byId.get(id); if(!b) return;
-  caption.textContent = ""; const st = el("strong",null,b.title); caption.append(st, b.author ? ", "+b.author : "");
-}
-shelf.addEventListener("mouseover", e=>{ const sp=e.target.closest(".spine"); if(sp) show(sp.dataset.id); });
+/* ---------- shelf interaction ---------- */
+const caption = $("caption");
+const byId = new Map(all.map(b=>[b.id,b]));
+function showCaption(id){ const b = byId.get(id); if(!b) return; caption.textContent = ""; caption.append(el("strong",null,b.title), b.author ? ", "+b.author : ""); }
+shelf.addEventListener("mouseover", e=>{ const sp=e.target.closest(".spine"); if(sp) showCaption(sp.dataset.id); });
 shelf.addEventListener("click", e=>{
   const sp = e.target.closest(".spine"); if(!sp) return;
-  show(sp.dataset.id);
-  if (q.value){ q.value=""; apply(); }
-  const li = document.getElementById(sp.dataset.id);
+  showCaption(sp.dataset.id);
+  showTab("books");
+  if (Object.keys(DEFAULTS).some(k=>state[k])) { Object.assign(state,DEFAULTS); apply(); }
+  const li = $(sp.dataset.id);
   li.scrollIntoView({behavior: reduce?"auto":"smooth", block:"center"});
   li.classList.remove("flash"); void li.offsetWidth; li.classList.add("flash");
 });
+
+/* ---------- tabs ---------- */
+const tabs = [$("tab-books"), $("tab-insights")];
+function showTab(name){
+  tabs.forEach(t=>{ const on = t.id==="tab-"+name; t.setAttribute("aria-selected", String(on)); t.tabIndex = on?0:-1; });
+  $("panel-books").hidden = name!=="books"; $("panel-insights").hidden = name!=="insights";
+  history.replaceState(null,"", name==="insights" ? "#insights" : location.pathname + location.search);
+}
+tabs.forEach((t,i)=>{
+  t.addEventListener("click",()=>showTab(t.id.replace("tab-","")));
+  t.addEventListener("keydown",e=>{
+    if (e.key!=="ArrowRight" && e.key!=="ArrowLeft") return;
+    const nt = tabs[(i + (e.key==="ArrowRight"?1:-1) + tabs.length) % tabs.length];
+    nt.focus(); showTab(nt.id.replace("tab-",""));
+  });
+});
+
+/* ---------- charts ---------- */
+function card(title, sub, wide){
+  const c = el("section","chart"+(wide?" wide":"")); c.appendChild(el("h3",null,title));
+  if (sub) c.appendChild(el("p","sub",sub));
+  $("charts").appendChild(c); return c;
+}
+function stackRow(parent, label, segs){
+  const total = segs.reduce((a,s)=>a+s.count,0);
+  const row = el("div","stackrow"); row.appendChild(el("p","lab",label));
+  const st = el("div","stack");
+  segs.filter(s=>s.count).forEach(s=>{
+    const b = el("button",s.cls,pct(s.count,total)>=30 ? `${s.name} ${s.count}` : String(s.count)); b.type="button";
+    b.style.flex = `${s.count} 1 0`; b.style.background = s.color;
+    b.title = `${s.name}: ${s.count} of ${total} (${pct(s.count,total)}%)`;
+    b.setAttribute("aria-label", `${s.name}: ${plural(s.count,"book","books")}. Show these books.`);
+    b.addEventListener("click",()=>show(s.patch)); st.appendChild(b);
+  });
+  row.appendChild(st);
+  row.appendChild(el("p","stackcap", segs.map(s=>`${s.name} ${s.count} (${pct(s.count,total)}%)`).join(", ")));
+  parent.appendChild(row);
+}
+function hbar(parent, items, color){
+  const ul = el("ul","hbar");
+  const max = Math.max(...items.map(i=>i.count),1);
+  items.forEach(i=>{
+    const li = el("li"), b = el("button"); b.type="button";
+    const track = el("span","track"), bar = el("span","bar"); bar.style.width = (i.count/max*100)+"%";
+    if (color) bar.style.setProperty("--bar", color);
+    track.appendChild(bar);
+    b.append(el("span",null,i.label), track, el("span","n",String(i.count)));
+    b.setAttribute("aria-label", `${i.label}: ${plural(i.count,"book","books")}. Show these books.`);
+    b.addEventListener("click",()=>show(i.patch)); li.appendChild(b); ul.appendChild(li);
+  });
+  return ul;
+}
+function legend(parent, items){
+  const p = el("p","legend");
+  items.forEach(([t,c])=>{ const k=el("span","k"); const sw=el("span","sw"); sw.style.background=c; k.append(sw,t); p.appendChild(k); });
+  parent.appendChild(p);
+}
+
+function buildInsights(){
+  const cnt = (fn)=>all.filter(fn).length;
+  const women = cnt(b=>b.gender==="Female"), men = cnt(b=>b.gender==="Male"), gk = women+men;
+  const fic = cnt(b=>b.category==="Fiction"), nf = cnt(b=>b.category==="Non-fiction"), ck = fic+nf;
+  const eng = cnt(b=>b.language==="English"), trans = cnt(b=>b.language && b.language!=="English"), lk = eng+trans;
+  const natTop = byCount(countBy(b=>b.nationality));
+  const langTop = byCount(new Map([...countBy(b=>b.language)].filter(([l])=>l!=="English")));
+
+  // 1. at a glance
+  const c1 = card("At a glance", "Tap a section to see those books.");
+  stackRow(c1,"Fiction or non-fiction",[
+    {name:"Fiction",count:fic,color:C.fic,cls:"fic",patch:{category:"Fiction"}},
+    {name:"Non-fiction",count:nf,color:C.nf,cls:"nf",patch:{category:"Non-fiction"}}]);
+  stackRow(c1,"Author gender",[
+    {name:"Women",count:women,color:C.fem,cls:"fem",patch:{gender:"Female"}},
+    {name:"Men",count:men,color:C.male,cls:"male",patch:{gender:"Male"}}]);
+  stackRow(c1,"Original language",[
+    {name:"English",count:eng,color:C.eng,cls:"eng",patch:{language:"English"}},
+    {name:"Other",count:trans,color:C.trans,cls:"trans",patch:{language:"__other"}}]);
+  const missing = all.length - Math.min(gk,ck,lk);
+  if (missing) c1.appendChild(el("p","more",`Details could not be found for ${plural(all.length-ck,"book","books")}, so they are left out of these bars.`));
+
+  // 2. nationality
+  const c2 = card("Author nationality", "Where the authors are from.");
+  const top = natTop.slice(0,10);
+  c2.appendChild(hbar(c2, top.map(([n,c])=>({label:n,count:c,patch:{nationality:n}})), C.fic));
+  if (natTop.length>10) c2.appendChild(el("p","more",`${natTop.length-10} more countries with ${plural(natTop.slice(10).reduce((a,x)=>a+x[1],0),"book","books")} between them. Use Filters to see them.`));
+
+  // 3. women by season
+  const c3 = card("Women and men by season", "Share of each season's books written by women and by men. The dashed line marks an even split.", true);
+  const cols = el("div","cols half");
+  DATA.seasons.forEach(s=>{
+    const w = s.books.filter(b=>b.gender==="Female").length, m = s.books.filter(b=>b.gender==="Male").length, t = w+m;
+    const b = el("button","col"); b.type="button";
+    const stk = el("span","stk"), ml = el("i","ml"), fm = el("i","fm");
+    ml.style.height = pct(m,t)+"%"; fm.style.height = pct(w,t)+"%"; stk.append(ml,fm);
+    const lab = el("span","l", s.id==="pre-2004" ? "<04" : s.id.slice(2,4));
+    b.append(el("span","v"), stk, lab);
+    b.title = `${s.label}: ${w} women, ${m} men`;
+    b.setAttribute("aria-label", `${s.label}: ${plural(w,"book","books")} by women, ${plural(m,"book","books")} by men. Go to this season.`);
+    b.addEventListener("click",()=>{ show({}); const target = seasons.find(x=>x.id===s.id); setTimeout(()=>target.el.scrollIntoView({behavior:reduce?"auto":"smooth",block:"start"}),50); });
+    cols.appendChild(b);
+  });
+  c3.appendChild(cols); legend(c3,[["Women",C.fem],["Men",C.male]]);
+
+  // 4. decade
+  const c4 = card("When the books were first published", "Books by the decade they first appeared.");
+  const dc = countBy(b=>b.decade), maxd = Math.max(...dc.values());
+  const cols4 = el("div","cols");
+  DECADES.forEach(d=>{
+    const n = dc.get(d)||0, b = el("button","col"); b.type="button";
+    const bar = el("span","bar"); bar.style.setProperty("--h", n/maxd);
+    bar.style.setProperty("--bar", C.fic);
+    b.append(el("span","v",String(n)), bar, el("span","l",DECADE_SHORT[d]||d));
+    b.setAttribute("aria-label", `${d}: ${plural(n,"book","books")}. Show these books.`);
+    if (n) b.addEventListener("click",()=>show({decade:d})); else b.style.cursor="default";
+    cols4.appendChild(b);
+  });
+  c4.appendChild(cols4);
+  const undated = all.filter(b=>!b.year).length;
+  if (undated) c4.appendChild(el("p","more",`${plural(undated,"book has","books have")} no year found.`));
+
+  // 5. languages
+  const c5 = card("Books in translation", `${trans} books were first written in a language other than English.`);
+  c5.appendChild(hbar(c5, langTop.map(([l,n])=>({label:l,count:n,patch:{language:l}})), C.trans));
+
+  // 6. authors
+  const c6 = card("Most-read authors", "Authors with three or more books on the list.");
+  const byA = new Map(); all.forEach(b=>{ if(!b.author) return; if(!byA.has(b.author)) byA.set(b.author,new Set()); byA.get(b.author).add(norm(b.title)); });
+  const freq = [...byA].map(([a,t])=>[a,t.size]).filter(x=>x[1]>=3).sort((x,y)=>y[1]-x[1]||x[0].localeCompare(y[0]));
+  c6.appendChild(hbar(c6, freq.map(([a,n])=>({label:a,count:n,patch:{q:a}})), C.fem));
+}
+buildInsights();
+
+/* ---------- start ---------- */
+apply();
+if (location.hash==="#insights") showTab("insights");
 </script>
 </body>
 </html>

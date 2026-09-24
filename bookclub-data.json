@@ -1,0 +1,2400 @@
+{
+ "meta": {
+  "club": "Bookclub (Montreal area)",
+  "structure": "Before 2004 (one bucket), then one entry per season from 2004-05",
+  "fields": {
+   "date": "As written on the sheet. Year inferred from the season where only a month was given",
+   "status": "read, not_read, cancelled or unclear; only set where the sheet has a tick, cross or note. Omitted otherwise",
+   "format": "film where the sheet marks the book [video]/movie",
+   "author_gender": "Female or Male, for the author. Where a book has several authors, the first named. Michael Lewis (editor) counts as male. Elena Ferrante is a pseudonym and is counted as female",
+   "nationality": "Citizenship or the country the author is most identified with. Several are judgement calls, see nationality_judgement_calls",
+   "year_published": "Year of first publication in the original language, not of the edition the club read",
+   "original_language": "Language the book was first written in",
+   "category": "Fiction or Non-fiction. Plays and short stories count as fiction; memoir and biography as non-fiction",
+   "check": "Present where the details above are uncertain and worth verifying"
+  },
+  "author_note": "Author and title spellings were corrected where the sheet was clearly off; the sheet's version is in note.",
+  "unresolved_notes_from_sheets": [
+   "Red note on early list: do you remember if we did In the Skin of a Lion, Cinnamon Gardens, Saturday, Stones from the River, or The Book of Ruth?",
+   "Struck-through handwritten 'The Prince, Machiavelli ?' beside the early list; not included.",
+   "Red note: this is the most up-to-date list from records; there is probably stuff missing."
+  ],
+  "nationality_judgement_calls": {
+   "Canadian": [
+    "Rohinton Mistry (born India)",
+    "Michael Ondaatje (born Sri Lanka)",
+    "Yann Martel (born Spain)",
+    "Anita Rau Badami (born India)",
+    "Sandra Gulland (born US)",
+    "Nancy Huston (born Canada, lives in France)",
+    "Dawn Promislow (born South Africa)",
+    "Carol Shields (born US)",
+    "Camilla Gibb (born UK)",
+    "John Vaillant (born US)",
+    "Stephen Leacock (born UK)"
+   ],
+   "American": [
+    "Azar Nafisi (born Iran)",
+    "Ursula Hegi (born Germany)",
+    "Khaled Hosseini (born Afghanistan)",
+    "Ha Jin (born China)",
+    "Aleksandar Hemon (born Bosnia)",
+    "Kati Marton (born Hungary)",
+    "Janice Y. K. Lee (born Hong Kong)",
+    "Thomas Merton (born France)",
+    "Abraham Verghese (born Ethiopia)",
+    "Henry James (later British)"
+   ],
+   "British": [
+    "Alexandra Fuller (British-born, raised in Africa, lives in the US)",
+    "Kazuo Ishiguro (born Japan)",
+    "Salman Rushdie (born India)",
+    "V. S. Naipaul (born Trinidad)",
+    "Hisham Matar (Libyan heritage)",
+    "Elif Shafak (born France, Turkish)",
+    "Jean Rhys (born Dominica)",
+    "Monica Ali (born Bangladesh)",
+    "Douglas Stuart (Scottish)"
+   ],
+   "Other": [
+    "Irène Némirovsky (Russian-born, French)",
+    "Javier Zamora (Salvadoran-American)",
+    "Elisa Shua Dusapin (French-Korean, raised in Switzerland)",
+    "Linda Olsson (Swedish-born, lives in New Zealand)",
+    "Colum McCann (Irish, lives in the US)",
+    "Geraldine Brooks (Australian, lives in the US)",
+    "Tove Jansson (Finnish, wrote in Swedish)",
+    "M. L. Stedman (English-born, Australian)"
+   ]
+  }
+ },
+ "seasons": [
+  {
+   "id": "pre-2004",
+   "label": "Before 2004",
+   "note": "Early list. Alphabetical and mostly undated.",
+   "books": [
+    {
+     "title": "A Fine Balance",
+     "author": "Rohinton Mistry",
+     "author_gender": "Male",
+     "nationality": "Canadian",
+     "year_published": 1996,
+     "original_language": "English",
+     "category": "Fiction"
+    },
+    {
+     "title": "A Heartbreaking Work of Staggering Genius",
+     "author": "Dave Eggers",
+     "author_gender": "Male",
+     "nationality": "American",
+     "year_published": 2000,
+     "original_language": "English",
+     "category": "Non-fiction"
+    },
+    {
+     "title": "A Map of the World",
+     "author": "Jane Hamilton",
+     "date": "1999-2000",
+     "author_gender": "Female",
+     "nationality": "American",
+     "year_published": 1994,
+     "original_language": "English",
+     "category": "Fiction"
+    },
+    {
+     "title": "The Year of the Death of Ricardo Reis",
+     "author": "José Saramago",
+     "date": "1999",
+     "note": "Listed twice on the sheet under slightly different titles; merged into one.",
+     "author_gender": "Male",
+     "nationality": "Portuguese",
+     "year_published": 1984,
+     "original_language": "Portuguese",
+     "category": "Fiction"
+    },
+    {
+     "title": "American Pastoral",
+     "author": "Philip Roth",
+     "note": "Sheet spells the first name Phillip.",
+     "author_gender": "Male",
+     "nationality": "American",
+     "year_published": 1997,
+     "original_language": "English",
+     "category": "Fiction"
+    },
+    {
+     "title": "Anil's Ghost",
+     "author": "Michael Ondaatje",
+     "date": "2002???",
+     "author_gender": "Male",
+     "nationality": "Canadian",
+     "year_published": 2000,
+     "original_language": "English",
+     "category": "Fiction"
+    },
+    {
+     "title": "Atonement",
+     "author": "Ian McEwan",
+     "author_gender": "Male",
+     "nationality": "British",
+     "year_published": 2001,
+     "original_language": "English",
+     "category": "Fiction"
+    },
+    {
+     "title": "Boom, Bust and Echo 2000",
+     "author": "David Foot",
+     "author_gender": "Male",
+     "nationality": "Canadian",
+     "year_published": 1996,
+     "original_language": "English",
+     "category": "Non-fiction",
+     "check": "Sheet gives the 2000 edition; year is the first edition"
+    },
+    {
+     "title": "Captain Corelli's Mandolin",
+     "author": "Louis de Bernières",
+     "date": "1997-98",
+     "note": "Marked in red as the first book done for the bookclub.",
+     "author_gender": "Male",
+     "nationality": "British",
+     "year_published": 1994,
+     "original_language": "English",
+     "category": "Fiction"
+    },
+    {
+     "title": "Collected Stories",
+     "author": "Donald Margulies",
+     "note": "Listed as 'Collected Stories: A Play'. Sheet spells the author Magulies.",
+     "author_gender": "Male",
+     "nationality": "American",
+     "year_published": 1996,
+     "original_language": "English",
+     "category": "Fiction",
+     "check": "A play; year is the first production"
+    },
+    {
+     "title": "Crossing to Safety",
+     "author": "Wallace Stegner",
+     "note": "Sheet reads Wally Stengel.",
+     "author_gender": "Male",
+     "nationality": "American",
+     "year_published": 1987,
+     "original_language": "English",
+     "category": "Fiction"
+    },
+    {
+     "title": "Crow Lake",
+     "author": "Mary Lawson",
+     "author_gender": "Female",
+     "nationality": "Canadian",
+     "year_published": 2002,
+     "original_language": "English",
+     "category": "Fiction"
+    },
+    {
+     "title": "Damascus Gate",
+     "author": "Robert Stone",
+     "author_gender": "Male",
+     "nationality": "American",
+     "year_published": 1998,
+     "original_language": "English",
+     "category": "Fiction"
+    },
+    {
+     "title": "Death Comes for the Archbishop",
+     "author": "Willa Cather",
+     "date": "1999-2000",
+     "author_gender": "Female",
+     "nationality": "American",
+     "year_published": 1927,
+     "original_language": "English",
+     "category": "Fiction"
+    },
+    {
+     "title": "Divine Secrets of the Ya-Ya Sisterhood",
+     "author": "Rebecca Wells",
+     "author_gender": "Female",
+     "nationality": "American",
+     "year_published": 1996,
+     "original_language": "English",
+     "category": "Fiction"
+    },
+    {
+     "title": "Don't Let's Go to the Dogs Tonight",
+     "author": "Alexandra Fuller",
+     "author_gender": "Female",
+     "nationality": "British",
+     "year_published": 2001,
+     "original_language": "English",
+     "category": "Non-fiction"
+    },
+    {
+     "title": "Ender's Game",
+     "author": "Orson Scott Card",
+     "author_gender": "Male",
+     "nationality": "American",
+     "year_published": 1985,
+     "original_language": "English",
+     "category": "Fiction"
+    },
+    {
+     "title": "Fall on Your Knees",
+     "author": "Ann-Marie MacDonald",
+     "note": "Sheet reads Marie McDonald.",
+     "author_gender": "Female",
+     "nationality": "Canadian",
+     "year_published": 1996,
+     "original_language": "English",
+     "category": "Fiction"
+    },
+    {
+     "title": "Floating in My Mother's Palm",
+     "author": "Ursula Hegi",
+     "author_gender": "Female",
+     "nationality": "American",
+     "year_published": 1990,
+     "original_language": "English",
+     "category": "Fiction"
+    },
+    {
+     "title": "Fugitive Pieces",
+     "author": "Anne Michaels",
+     "author_gender": "Female",
+     "nationality": "Canadian",
+     "year_published": 1996,
+     "original_language": "English",
+     "category": "Fiction"
+    },
+    {
+     "title": "House of Sand and Fog",
+     "author": "Andre Dubus III",
+     "author_gender": "Male",
+     "nationality": "American",
+     "year_published": 1999,
+     "original_language": "English",
+     "category": "Fiction"
+    },
+    {
+     "title": "Life of Pi",
+     "author": "Yann Martel",
+     "author_gender": "Male",
+     "nationality": "Canadian",
+     "year_published": 2001,
+     "original_language": "English",
+     "category": "Fiction"
+    },
+    {
+     "title": "Lovely Bones",
+     "author": "Alice Sebold",
+     "author_gender": "Female",
+     "nationality": "American",
+     "year_published": 2002,
+     "original_language": "English",
+     "category": "Fiction"
+    },
+    {
+     "title": "Mercy Among the Children",
+     "author": "David Adams Richards",
+     "author_gender": "Male",
+     "nationality": "Canadian",
+     "year_published": 2000,
+     "original_language": "English",
+     "category": "Fiction"
+    },
+    {
+     "title": "My Dream of You",
+     "author": "Nuala O'Faolain",
+     "date": "2002?",
+     "author_gender": "Female",
+     "nationality": "Irish",
+     "year_published": 2001,
+     "original_language": "English",
+     "category": "Fiction"
+    },
+    {
+     "title": "Not Wanted on the Voyage",
+     "author": "Timothy Findley",
+     "author_gender": "Male",
+     "nationality": "Canadian",
+     "year_published": 1984,
+     "original_language": "English",
+     "category": "Fiction"
+    },
+    {
+     "title": "Paula",
+     "author": "Isabel Allende",
+     "date": "2002?",
+     "author_gender": "Female",
+     "nationality": "Chilean",
+     "year_published": 1994,
+     "original_language": "Spanish",
+     "category": "Non-fiction"
+    },
+    {
+     "title": "Perfume",
+     "author": "Patrick Süskind",
+     "author_gender": "Male",
+     "nationality": "German",
+     "year_published": 1985,
+     "original_language": "German",
+     "category": "Fiction"
+    },
+    {
+     "title": "Portrait of a Marriage",
+     "author": "Nigel Nicolson",
+     "note": "Sheet credits Harold Nicholson, who is the book's subject; the author is Nigel Nicolson.",
+     "author_gender": "Male",
+     "nationality": "British",
+     "year_published": 1973,
+     "original_language": "English",
+     "category": "Non-fiction"
+    },
+    {
+     "title": "She's Come Undone",
+     "author": "Wally Lamb",
+     "author_gender": "Male",
+     "nationality": "American",
+     "year_published": 1992,
+     "original_language": "English",
+     "category": "Fiction"
+    },
+    {
+     "title": "Tamarind Mem",
+     "author": "Anita Rau Badami",
+     "author_gender": "Female",
+     "nationality": "Canadian",
+     "year_published": 1996,
+     "original_language": "English",
+     "category": "Fiction"
+    },
+    {
+     "title": "The Black Prince",
+     "author": "Iris Murdoch",
+     "date": "2002-03; handwritten May 2003",
+     "author_gender": "Female",
+     "nationality": "British",
+     "year_published": 1973,
+     "original_language": "English",
+     "category": "Fiction"
+    },
+    {
+     "title": "The Book of Hours",
+     "author": "Michael Cunningham",
+     "note": "As written on the sheet. Cunningham's novel is The Hours, so this may be an error.",
+     "author_gender": "Male",
+     "nationality": "American",
+     "year_published": 1998,
+     "original_language": "English",
+     "category": "Fiction",
+     "check": "Title on the sheet may be Cunningham's The Hours (1998)"
+    },
+    {
+     "title": "The Corrections",
+     "author": "Jonathan Franzen",
+     "author_gender": "Male",
+     "nationality": "American",
+     "year_published": 2001,
+     "original_language": "English",
+     "category": "Fiction"
+    },
+    {
+     "title": "The Heart of the Matter",
+     "author": "Graham Greene",
+     "date": "2002???",
+     "note": "Also appears on the 2019-20 list.",
+     "author_gender": "Male",
+     "nationality": "British",
+     "year_published": 1948,
+     "original_language": "English",
+     "category": "Fiction"
+    },
+    {
+     "title": "The Many Lives and Secret Sorrows of Josephine B.",
+     "author": "Sandra Gulland",
+     "note": "Sheet reads Guillard.",
+     "author_gender": "Female",
+     "nationality": "Canadian",
+     "year_published": 1995,
+     "original_language": "English",
+     "category": "Fiction"
+    },
+    {
+     "title": "The Mark of an Angel",
+     "author": "Nancy Huston",
+     "date": "2000???",
+     "note": "Sheet reads Houston.",
+     "author_gender": "Female",
+     "nationality": "Canadian",
+     "year_published": 1998,
+     "original_language": "French",
+     "category": "Fiction"
+    },
+    {
+     "title": "The Poisonwood Bible",
+     "author": "Barbara Kingsolver",
+     "date": "2000-01",
+     "author_gender": "Female",
+     "nationality": "American",
+     "year_published": 1998,
+     "original_language": "English",
+     "category": "Fiction"
+    },
+    {
+     "title": "The Red Tent",
+     "author": "Anita Diamant",
+     "author_gender": "Female",
+     "nationality": "American",
+     "year_published": 1997,
+     "original_language": "English",
+     "category": "Fiction"
+    },
+    {
+     "title": "The Scarlet Letter",
+     "author": "Nathaniel Hawthorne",
+     "author_gender": "Male",
+     "nationality": "American",
+     "year_published": 1850,
+     "original_language": "English",
+     "category": "Fiction"
+    },
+    {
+     "title": "The Secret River",
+     "author": "Kate Grenville",
+     "author_gender": "Female",
+     "nationality": "Australian",
+     "year_published": 2005,
+     "original_language": "English",
+     "category": "Fiction"
+    },
+    {
+     "title": "The Seven Storey Mountain",
+     "author": "Thomas Merton",
+     "note": "Sheet reads Seven Story Mountain.",
+     "author_gender": "Male",
+     "nationality": "American",
+     "year_published": 1948,
+     "original_language": "English",
+     "category": "Non-fiction"
+    },
+    {
+     "title": "The Stone Diaries",
+     "author": "Carol Shields",
+     "date": "2001-02; handwritten March 2002",
+     "author_gender": "Female",
+     "nationality": "Canadian",
+     "year_published": 1993,
+     "original_language": "English",
+     "category": "Fiction"
+    },
+    {
+     "title": "The Underpainter",
+     "author": "Jane Urquhart",
+     "author_gender": "Female",
+     "nationality": "Canadian",
+     "year_published": 1997,
+     "original_language": "English",
+     "category": "Fiction"
+    },
+    {
+     "title": "To the Lighthouse",
+     "author": "Virginia Woolf",
+     "note": "Sheet reads 'or other over the summer read'.",
+     "author_gender": "Female",
+     "nationality": "British",
+     "year_published": 1927,
+     "original_language": "English",
+     "category": "Fiction"
+    },
+    {
+     "title": "Underworld",
+     "author": "Don DeLillo",
+     "author_gender": "Male",
+     "nationality": "American",
+     "year_published": 1997,
+     "original_language": "English",
+     "category": "Fiction"
+    },
+    {
+     "title": "White Teeth",
+     "author": "Zadie Smith",
+     "author_gender": "Female",
+     "nationality": "British",
+     "year_published": 2000,
+     "original_language": "English",
+     "category": "Fiction"
+    },
+    {
+     "title": "Written on the Body",
+     "author": "Jeanette Winterson",
+     "author_gender": "Female",
+     "nationality": "British",
+     "year_published": 1992,
+     "original_language": "English",
+     "category": "Fiction"
+    }
+   ]
+  },
+  {
+   "id": "2004-05",
+   "label": "2004-2005",
+   "note": "A red note on the sheet says one title is missing.",
+   "books": [
+    {
+     "title": "The No. 1 Ladies' Detective Agency",
+     "author": "Alexander McCall Smith",
+     "date": "Jan 2004",
+     "note": "Handwritten addition on the sheet.",
+     "author_gender": "Male",
+     "nationality": "British",
+     "year_published": 1998,
+     "original_language": "English",
+     "category": "Fiction"
+    },
+    {
+     "title": "George Orwell",
+     "author": "Gordon Bowker",
+     "date": "Feb 2004",
+     "note": "Handwritten addition on the sheet.",
+     "author_gender": "Male",
+     "nationality": "British",
+     "year_published": 2003,
+     "original_language": "English",
+     "category": "Non-fiction"
+    },
+    {
+     "title": "Nine Parts of Desire",
+     "author": "Geraldine Brooks",
+     "date": "Feb 2005",
+     "author_gender": "Female",
+     "nationality": "Australian",
+     "year_published": 1995,
+     "original_language": "English",
+     "category": "Non-fiction",
+     "check": "Year not certain (1994 or 1995)"
+    },
+    {
+     "title": "No Crystal Stair",
+     "author": "May Ruth Sausfield",
+     "date": "March 2005",
+     "note": "Author as written on the sheet; not verified.",
+     "author_gender": "Female",
+     "check": "Book and author could not be identified; gender inferred from the first name only"
+    },
+    {
+     "title": "Tales of a Female Nomad: Living at Large in the World",
+     "author": "Rita Golden Gelman",
+     "author_gender": "Female",
+     "nationality": "American",
+     "year_published": 2001,
+     "original_language": "English",
+     "category": "Non-fiction"
+    },
+    {
+     "title": "The Cure for Death by Lightning",
+     "author": "Gail Anderson-Dargatz",
+     "date": "Sept 2004",
+     "author_gender": "Female",
+     "nationality": "Canadian",
+     "year_published": 1996,
+     "original_language": "English",
+     "category": "Fiction"
+    },
+    {
+     "title": "The Da Vinci Code",
+     "author": "Dan Brown",
+     "author_gender": "Male",
+     "nationality": "American",
+     "year_published": 2003,
+     "original_language": "English",
+     "category": "Fiction"
+    },
+    {
+     "title": "The Kite Runner",
+     "author": "Khaled Hosseini",
+     "date": "May 2005",
+     "author_gender": "Male",
+     "nationality": "American",
+     "year_published": 2003,
+     "original_language": "English",
+     "category": "Fiction"
+    },
+    {
+     "title": "The Lost Garden",
+     "author": "Helen Humphreys",
+     "date": "2005",
+     "author_gender": "Female",
+     "nationality": "Canadian",
+     "year_published": 2002,
+     "original_language": "English",
+     "category": "Fiction"
+    },
+    {
+     "title": "Two Solitudes",
+     "author": "Hugh MacLennan",
+     "author_gender": "Male",
+     "nationality": "Canadian",
+     "year_published": 1945,
+     "original_language": "English",
+     "category": "Fiction"
+    }
+   ]
+  },
+  {
+   "id": "2005-06",
+   "label": "2005-2006",
+   "books": [
+    {
+     "title": "A Room of One's Own",
+     "author": "Virginia Woolf",
+     "date": "Sept 2005",
+     "author_gender": "Female",
+     "nationality": "British",
+     "year_published": 1929,
+     "original_language": "English",
+     "category": "Non-fiction"
+    },
+    {
+     "title": "Bel Canto",
+     "author": "Ann Patchett",
+     "author_gender": "Female",
+     "nationality": "American",
+     "year_published": 2001,
+     "original_language": "English",
+     "category": "Fiction"
+    },
+    {
+     "title": "Beyond Black",
+     "author": "Hilary Mantel",
+     "note": "Also listed in 2006-07.",
+     "author_gender": "Female",
+     "nationality": "British",
+     "year_published": 2005,
+     "original_language": "English",
+     "category": "Fiction"
+    },
+    {
+     "title": "Blindness",
+     "author": "José Saramago",
+     "author_gender": "Male",
+     "nationality": "Portuguese",
+     "year_published": 1995,
+     "original_language": "Portuguese",
+     "category": "Fiction"
+    },
+    {
+     "title": "Daisy Miller",
+     "author": "Henry James",
+     "author_gender": "Male",
+     "nationality": "American",
+     "year_published": 1878,
+     "original_language": "English",
+     "category": "Fiction"
+    },
+    {
+     "title": "May Sarton: A Poet's Life",
+     "author": "Lenora P. Blouin",
+     "author_gender": "Female",
+     "original_language": "English",
+     "category": "Non-fiction",
+     "check": "Book could not be identified; year, nationality unknown; gender inferred from the first name only"
+    },
+    {
+     "title": "Pride and Prejudice",
+     "author": "Jane Austen",
+     "author_gender": "Female",
+     "nationality": "British",
+     "year_published": 1813,
+     "original_language": "English",
+     "category": "Fiction"
+    },
+    {
+     "title": "Sweetness in the Belly",
+     "author": "Camilla Gibb",
+     "note": "Also listed in 2006-07.",
+     "author_gender": "Female",
+     "nationality": "Canadian",
+     "year_published": 2005,
+     "original_language": "English",
+     "category": "Fiction"
+    },
+    {
+     "title": "The Crazed",
+     "author": "Ha Jin",
+     "author_gender": "Male",
+     "nationality": "American",
+     "year_published": 2002,
+     "original_language": "English",
+     "category": "Fiction"
+    },
+    {
+     "title": "La Cucina",
+     "author": "Lily Prior",
+     "author_gender": "Female",
+     "nationality": "British",
+     "year_published": 2000,
+     "original_language": "English",
+     "category": "Fiction",
+     "check": "Year not certain (2000 UK, 2001 US?)"
+    },
+    {
+     "title": "Reading Lolita in Tehran",
+     "author": "Azar Nafisi",
+     "author_gender": "Female",
+     "nationality": "American",
+     "year_published": 2003,
+     "original_language": "English",
+     "category": "Non-fiction"
+    }
+   ]
+  },
+  {
+   "id": "2006-07",
+   "label": "2006-2007",
+   "note": "A red note says one title was missing; a handwritten entry fills it.",
+   "books": [
+    {
+     "title": "A Complicated Kindness",
+     "author": "Miriam Toews",
+     "date": "Sept 2006",
+     "author_gender": "Female",
+     "nationality": "Canadian",
+     "year_published": 2004,
+     "original_language": "English",
+     "category": "Fiction"
+    },
+    {
+     "title": "Beyond Black",
+     "author": "Hilary Mantel",
+     "note": "Also listed in 2005-06.",
+     "author_gender": "Female",
+     "nationality": "British",
+     "year_published": 2005,
+     "original_language": "English",
+     "category": "Fiction"
+    },
+    {
+     "title": "Scar Tissue",
+     "author": "Michael Ignatieff",
+     "date": "Oct 2006",
+     "author_gender": "Male",
+     "nationality": "Canadian",
+     "year_published": 1993,
+     "original_language": "English",
+     "category": "Fiction"
+    },
+    {
+     "title": "Skating to Antarctica",
+     "author": "Jenny Diski",
+     "date": "Feb 2007",
+     "author_gender": "Female",
+     "nationality": "British",
+     "year_published": 1997,
+     "original_language": "English",
+     "category": "Non-fiction"
+    },
+    {
+     "title": "Small Island",
+     "author": "Andrea Levy",
+     "note": "Sheet reads 'A Small Island' by Andrea Levi.",
+     "author_gender": "Female",
+     "nationality": "British",
+     "year_published": 2004,
+     "original_language": "English",
+     "category": "Fiction"
+    },
+    {
+     "title": "Sweetness in the Belly",
+     "author": "Camilla Gibb",
+     "date": "March 2007",
+     "note": "Also listed in 2005-06.",
+     "author_gender": "Female",
+     "nationality": "Canadian",
+     "year_published": 2005,
+     "original_language": "English",
+     "category": "Fiction"
+    },
+    {
+     "title": "The Glass Castle",
+     "author": "Jeannette Walls",
+     "author_gender": "Female",
+     "nationality": "American",
+     "year_published": 2005,
+     "original_language": "English",
+     "category": "Non-fiction"
+    },
+    {
+     "title": "The Mermaid Chair",
+     "author": "Sue Monk Kidd",
+     "date": "2007",
+     "author_gender": "Female",
+     "nationality": "American",
+     "year_published": 2005,
+     "original_language": "English",
+     "category": "Fiction"
+    },
+    {
+     "title": "Eight Months on Ghazzah Street",
+     "author": "Hilary Mantel",
+     "note": "Handwritten addition; sheet reads 'Eight Months on Gaza St'.",
+     "author_gender": "Female",
+     "nationality": "British",
+     "year_published": 1988,
+     "original_language": "English",
+     "category": "Fiction"
+    },
+    {
+     "title": "The Line of Beauty",
+     "author": "Alan Hollinghurst",
+     "date": "2006",
+     "note": "Read in 2006 (sheet said 2006???, now confirmed as 2006). Placed in 2006-07; could equally be 2005-06.",
+     "author_gender": "Male",
+     "nationality": "British",
+     "year_published": 2004,
+     "original_language": "English",
+     "category": "Fiction"
+    }
+   ]
+  },
+  {
+   "id": "2007-08",
+   "label": "2007-2008",
+   "books": [
+    {
+     "title": "The Master",
+     "author": "Colm Tóibín",
+     "note": "Subtitle: The Life of Henry James.",
+     "author_gender": "Male",
+     "nationality": "Irish",
+     "year_published": 2004,
+     "original_language": "English",
+     "category": "Fiction"
+    },
+    {
+     "title": "A Question of Upbringing",
+     "author": "Anthony Powell",
+     "note": "Vol. 1 of A Dance to the Music of Time.",
+     "author_gender": "Male",
+     "nationality": "British",
+     "year_published": 1951,
+     "original_language": "English",
+     "category": "Fiction"
+    },
+    {
+     "title": "Extremely Loud and Incredibly Close",
+     "author": "Jonathan Safran Foer",
+     "author_gender": "Male",
+     "nationality": "American",
+     "year_published": 2005,
+     "original_language": "English",
+     "category": "Fiction"
+    },
+    {
+     "title": "A Man Without a Country",
+     "author": "Kurt Vonnegut",
+     "author_gender": "Male",
+     "nationality": "American",
+     "year_published": 2005,
+     "original_language": "English",
+     "category": "Non-fiction"
+    },
+    {
+     "title": "Suite Française",
+     "author": "Irène Némirovsky",
+     "author_gender": "Female",
+     "nationality": "French",
+     "year_published": 2004,
+     "original_language": "French",
+     "category": "Fiction"
+    },
+    {
+     "title": "Brideshead Revisited",
+     "author": "Evelyn Waugh",
+     "author_gender": "Male",
+     "nationality": "British",
+     "year_published": 1945,
+     "original_language": "English",
+     "category": "Fiction"
+    },
+    {
+     "title": "The Girls",
+     "author": "Lori Lansens",
+     "note": "Sheet reads Lausens; typed list reads Lauren's.",
+     "author_gender": "Female",
+     "nationality": "Canadian",
+     "year_published": 2005,
+     "original_language": "English",
+     "category": "Fiction"
+    },
+    {
+     "title": "The Inheritance of Loss",
+     "author": "Kiran Desai",
+     "author_gender": "Female",
+     "nationality": "Indian",
+     "year_published": 2006,
+     "original_language": "English",
+     "category": "Fiction"
+    },
+    {
+     "title": "The Good Earth",
+     "author": "Pearl S. Buck",
+     "author_gender": "Female",
+     "nationality": "American",
+     "year_published": 1931,
+     "original_language": "English",
+     "category": "Fiction"
+    }
+   ]
+  },
+  {
+   "id": "2008-09",
+   "label": "2008-2009",
+   "note": "A red note says one title is missing and March was undecided.",
+   "books": [
+    {
+     "title": "Middlesex",
+     "author": "Jeffrey Eugenides",
+     "author_gender": "Male",
+     "nationality": "American",
+     "year_published": 2002,
+     "original_language": "English",
+     "category": "Fiction"
+    },
+    {
+     "title": "The House of Mirth",
+     "author": "Edith Wharton",
+     "author_gender": "Female",
+     "nationality": "American",
+     "year_published": 1905,
+     "original_language": "English",
+     "category": "Fiction"
+    },
+    {
+     "title": "Mr. Pip",
+     "author": "Lloyd Jones",
+     "author_gender": "Male",
+     "nationality": "New Zealander",
+     "year_published": 2006,
+     "original_language": "English",
+     "category": "Fiction"
+    },
+    {
+     "title": "On Chesil Beach",
+     "author": "Ian McEwan",
+     "author_gender": "Male",
+     "nationality": "British",
+     "year_published": 2007,
+     "original_language": "English",
+     "category": "Fiction"
+    },
+    {
+     "title": "Arthur & George",
+     "author": "Julian Barnes",
+     "author_gender": "Male",
+     "nationality": "British",
+     "year_published": 2005,
+     "original_language": "English",
+     "category": "Fiction"
+    },
+    {
+     "title": "Love in the Time of Cholera",
+     "author": "Gabriel García Márquez",
+     "author_gender": "Male",
+     "nationality": "Colombian",
+     "year_published": 1985,
+     "original_language": "Spanish",
+     "category": "Fiction"
+    },
+    {
+     "title": "The Janissary Tree",
+     "author": "Jason Goodwin",
+     "author_gender": "Male",
+     "nationality": "British",
+     "year_published": 2006,
+     "original_language": "English",
+     "category": "Fiction"
+    },
+    {
+     "title": "Norwegian Wood",
+     "author": "Haruki Murakami",
+     "author_gender": "Male",
+     "nationality": "Japanese",
+     "year_published": 1987,
+     "original_language": "Japanese",
+     "category": "Fiction"
+    }
+   ]
+  },
+  {
+   "id": "2009-10",
+   "label": "2009-2010",
+   "note": "A red note says there should be 9 titles and asks whether the missing one was Persuasion.",
+   "books": [
+    {
+     "title": "Almost",
+     "author": "Elizabeth Benedict",
+     "author_gender": "Female",
+     "nationality": "American",
+     "year_published": 2001,
+     "original_language": "English",
+     "category": "Fiction"
+    },
+    {
+     "title": "Larry's Party",
+     "author": "Carol Shields",
+     "author_gender": "Female",
+     "nationality": "Canadian",
+     "year_published": 1997,
+     "original_language": "English",
+     "category": "Fiction"
+    },
+    {
+     "title": "Sometime Towards the End",
+     "author": "Diana Athill",
+     "author_gender": "Female",
+     "nationality": "British",
+     "year_published": 2008,
+     "original_language": "English",
+     "category": "Non-fiction"
+    },
+    {
+     "title": "The Book of Negroes",
+     "author": "Lawrence Hill",
+     "author_gender": "Male",
+     "nationality": "Canadian",
+     "year_published": 2007,
+     "original_language": "English",
+     "category": "Fiction"
+    },
+    {
+     "title": "The Guernsey Literary and Potato Peel Society",
+     "author": "Mary Ann Shaffer & Annie Barrows",
+     "author_gender": "Female",
+     "nationality": "American",
+     "year_published": 2008,
+     "original_language": "English",
+     "category": "Fiction"
+    },
+    {
+     "title": "The Bend in the River",
+     "author": "V. S. Naipaul",
+     "author_gender": "Male",
+     "nationality": "British",
+     "year_published": 1979,
+     "original_language": "English",
+     "category": "Fiction"
+    },
+    {
+     "title": "White Tiger",
+     "author": "Aravind Adiga",
+     "author_gender": "Male",
+     "nationality": "Indian",
+     "year_published": 2008,
+     "original_language": "English",
+     "category": "Fiction"
+    },
+    {
+     "title": "Loving Frank",
+     "author": "Nancy Horan",
+     "author_gender": "Female",
+     "nationality": "American",
+     "year_published": 2007,
+     "original_language": "English",
+     "category": "Fiction"
+    }
+   ]
+  },
+  {
+   "id": "2010-11",
+   "label": "2010-2011",
+   "books": [
+    {
+     "title": "Huckleberry Finn",
+     "author": "Mark Twain",
+     "date": "Sept 2010",
+     "author_gender": "Male",
+     "nationality": "American",
+     "year_published": 1884,
+     "original_language": "English",
+     "category": "Fiction"
+    },
+    {
+     "title": "Stoner",
+     "author": "John Williams",
+     "date": "Oct 2010",
+     "author_gender": "Male",
+     "nationality": "American",
+     "year_published": 1965,
+     "original_language": "English",
+     "category": "Fiction"
+    },
+    {
+     "title": "Out Stealing Horses",
+     "author": "Per Petterson",
+     "date": "Nov 2010",
+     "author_gender": "Male",
+     "nationality": "Norwegian",
+     "year_published": 2003,
+     "original_language": "Norwegian",
+     "category": "Fiction"
+    },
+    {
+     "title": "The Secret Scriptures",
+     "author": "Sebastian Barry",
+     "date": "Dec 2010",
+     "author_gender": "Male",
+     "nationality": "Irish",
+     "year_published": 2008,
+     "original_language": "English",
+     "category": "Fiction"
+    },
+    {
+     "title": "Arcadian Adventures with the Idle Rich",
+     "author": "Stephen Leacock",
+     "date": "Jan 2011",
+     "author_gender": "Male",
+     "nationality": "Canadian",
+     "year_published": 1914,
+     "original_language": "English",
+     "category": "Fiction"
+    },
+    {
+     "title": "Tinkers",
+     "author": "Paul Harding",
+     "date": "Feb 2011",
+     "author_gender": "Male",
+     "nationality": "American",
+     "year_published": 2009,
+     "original_language": "English",
+     "category": "Fiction"
+    },
+    {
+     "title": "A Fortunate Life",
+     "author": "Albert Facey",
+     "date": "March 2011",
+     "author_gender": "Male",
+     "nationality": "Australian",
+     "year_published": 1981,
+     "original_language": "English",
+     "category": "Non-fiction"
+    },
+    {
+     "title": "The Girl Who Played with Fire",
+     "author": "Stieg Larsson",
+     "date": "April 2011",
+     "author_gender": "Male",
+     "nationality": "Swedish",
+     "year_published": 2006,
+     "original_language": "Swedish",
+     "category": "Fiction"
+    },
+    {
+     "title": "Lady Chatterley's Lover",
+     "author": "D. H. Lawrence",
+     "date": "May 2011",
+     "format": "film",
+     "note": "Handwritten 'movie'; marked [video] on the typed list.",
+     "author_gender": "Male",
+     "nationality": "British",
+     "year_published": 1928,
+     "original_language": "English",
+     "category": "Fiction"
+    }
+   ]
+  },
+  {
+   "id": "2011-12",
+   "label": "2011-2012",
+   "books": [
+    {
+     "title": "Wait for Me!",
+     "author": "Deborah Mitford",
+     "author_gender": "Female",
+     "nationality": "British",
+     "year_published": 2010,
+     "original_language": "English",
+     "category": "Non-fiction"
+    },
+    {
+     "title": "The Shipping News",
+     "author": "Annie Proulx",
+     "author_gender": "Female",
+     "nationality": "American",
+     "year_published": 1993,
+     "original_language": "English",
+     "category": "Fiction"
+    },
+    {
+     "title": "Don Quixote",
+     "author": "Miguel de Cervantes",
+     "author_gender": "Male",
+     "nationality": "Spanish",
+     "year_published": 1605,
+     "original_language": "Spanish",
+     "category": "Fiction"
+    },
+    {
+     "title": "Astrid and Veronika",
+     "author": "Linda Olsson",
+     "author_gender": "Female",
+     "nationality": "Swedish",
+     "year_published": 2005,
+     "original_language": "English",
+     "category": "Fiction"
+    },
+    {
+     "title": "A Good Death",
+     "author": "Elizabeth Ironside",
+     "author_gender": "Female",
+     "nationality": "British",
+     "year_published": 2000,
+     "original_language": "English",
+     "category": "Fiction",
+     "check": "First edition may be 1999"
+    },
+    {
+     "title": "We Need to Talk About Kevin",
+     "author": "Lionel Shriver",
+     "author_gender": "Female",
+     "nationality": "American",
+     "year_published": 2003,
+     "original_language": "English",
+     "category": "Fiction"
+    },
+    {
+     "title": "The Widow's Children",
+     "author": "Paula Fox",
+     "author_gender": "Female",
+     "nationality": "American",
+     "year_published": 1976,
+     "original_language": "English",
+     "category": "Fiction"
+    },
+    {
+     "title": "In the Country of Men",
+     "author": "Hisham Matar",
+     "author_gender": "Male",
+     "nationality": "British",
+     "year_published": 2006,
+     "original_language": "English",
+     "category": "Fiction"
+    }
+   ]
+  },
+  {
+   "id": "2012-13",
+   "label": "2012-2013",
+   "books": [
+    {
+     "title": "Cutting for Stone",
+     "author": "Abraham Verghese",
+     "author_gender": "Male",
+     "nationality": "American",
+     "year_published": 2009,
+     "original_language": "English",
+     "category": "Fiction"
+    },
+    {
+     "title": "Let the Great World Spin",
+     "author": "Colum McCann",
+     "author_gender": "Male",
+     "nationality": "Irish",
+     "year_published": 2009,
+     "original_language": "English",
+     "category": "Fiction"
+    },
+    {
+     "title": "Swinging on a Star",
+     "author": "Patricia Bissonette",
+     "note": "As written on the sheet; not verified.",
+     "author_gender": "Female",
+     "check": "Book and author could not be identified; gender inferred from the first name only"
+    },
+    {
+     "title": "Travelling Light",
+     "author": "Agnes Henchey",
+     "note": "As written on the sheet; not verified.",
+     "author_gender": "Female",
+     "check": "Book and author could not be identified; gender inferred from the first name only"
+    },
+    {
+     "title": "The Submission",
+     "author": "Amy Waldman",
+     "author_gender": "Female",
+     "nationality": "American",
+     "year_published": 2011,
+     "original_language": "English",
+     "category": "Fiction"
+    },
+    {
+     "title": "The Sense of an Ending",
+     "author": "Julian Barnes",
+     "author_gender": "Male",
+     "nationality": "British",
+     "year_published": 2011,
+     "original_language": "English",
+     "category": "Fiction"
+    },
+    {
+     "title": "The Hare with Amber Eyes",
+     "author": "Edmund de Waal",
+     "author_gender": "Male",
+     "nationality": "British",
+     "year_published": 2010,
+     "original_language": "English",
+     "category": "Non-fiction"
+    },
+    {
+     "title": "Bride of New France",
+     "author": "Suzanne Desrochers",
+     "author_gender": "Female",
+     "nationality": "Canadian",
+     "year_published": 2011,
+     "original_language": "English",
+     "category": "Fiction"
+    },
+    {
+     "title": "The Great Gatsby",
+     "author": "F. Scott Fitzgerald",
+     "author_gender": "Male",
+     "nationality": "American",
+     "year_published": 1925,
+     "original_language": "English",
+     "category": "Fiction"
+    },
+    {
+     "title": "The Navigator of New York",
+     "author": "Wayne Johnston",
+     "note": "Sheet reads Walter Johnson.",
+     "author_gender": "Male",
+     "nationality": "Canadian",
+     "year_published": 2002,
+     "original_language": "English",
+     "category": "Fiction"
+    }
+   ]
+  },
+  {
+   "id": "2013-14",
+   "label": "2013-2014",
+   "books": [
+    {
+     "title": "The Forgotten Garden",
+     "author": "Kate Morton",
+     "author_gender": "Female",
+     "nationality": "Australian",
+     "year_published": 2008,
+     "original_language": "English",
+     "category": "Fiction"
+    },
+    {
+     "title": "The Golden Spruce",
+     "author": "John Vaillant",
+     "note": "Subtitle: A True Story of Myth, Madness and Greed.",
+     "author_gender": "Male",
+     "nationality": "Canadian",
+     "year_published": 2005,
+     "original_language": "English",
+     "category": "Non-fiction"
+    },
+    {
+     "title": "The Cat's Table",
+     "author": "Michael Ondaatje",
+     "author_gender": "Male",
+     "nationality": "Canadian",
+     "year_published": 2011,
+     "original_language": "English",
+     "category": "Fiction"
+    },
+    {
+     "title": "The Night Circus",
+     "author": "Erin Morgenstern",
+     "author_gender": "Female",
+     "nationality": "American",
+     "year_published": 2011,
+     "original_language": "English",
+     "category": "Fiction"
+    },
+    {
+     "title": "The Testament of Mary",
+     "author": "Colm Tóibín",
+     "author_gender": "Male",
+     "nationality": "Irish",
+     "year_published": 2012,
+     "original_language": "English",
+     "category": "Fiction"
+    },
+    {
+     "title": "A Prayer for Owen Meany",
+     "author": "John Irving",
+     "author_gender": "Male",
+     "nationality": "American",
+     "year_published": 1989,
+     "original_language": "English",
+     "category": "Fiction"
+    },
+    {
+     "title": "The Immortal Life of Henrietta Lacks",
+     "author": "Rebecca Skloot",
+     "author_gender": "Female",
+     "nationality": "American",
+     "year_published": 2010,
+     "original_language": "English",
+     "category": "Non-fiction"
+    },
+    {
+     "title": "The Cello Suites",
+     "author": "Eric Siblin",
+     "note": "Sheet reads Erin Siblin.",
+     "author_gender": "Male",
+     "nationality": "Canadian",
+     "year_published": 2009,
+     "original_language": "English",
+     "category": "Non-fiction"
+    },
+    {
+     "title": "The Painted Veil",
+     "author": "W. Somerset Maugham",
+     "format": "film",
+     "note": "Marked [video] on the typed list.",
+     "author_gender": "Male",
+     "nationality": "British",
+     "year_published": 1925,
+     "original_language": "English",
+     "category": "Fiction"
+    }
+   ]
+  },
+  {
+   "id": "2014-15",
+   "label": "2014-2015",
+   "books": [
+    {
+     "title": "Shantaram",
+     "author": "Gregory David Roberts",
+     "note": "Sheet reads Shantarim.",
+     "author_gender": "Male",
+     "nationality": "Australian",
+     "year_published": 2003,
+     "original_language": "English",
+     "category": "Fiction"
+    },
+    {
+     "title": "The Goldfinch",
+     "author": "Donna Tartt",
+     "author_gender": "Female",
+     "nationality": "American",
+     "year_published": 2013,
+     "original_language": "English",
+     "category": "Fiction"
+    },
+    {
+     "title": "In the Midst of Life",
+     "author": "Jennifer Worth",
+     "author_gender": "Female",
+     "nationality": "British",
+     "year_published": 2010,
+     "original_language": "English",
+     "category": "Non-fiction"
+    },
+    {
+     "title": "The Light Between Oceans",
+     "author": "M. L. Stedman",
+     "note": "Sheet reads 'The Light Between Two Oceans, George Eliot'.",
+     "author_gender": "Female",
+     "nationality": "Australian",
+     "year_published": 2012,
+     "original_language": "English",
+     "category": "Fiction"
+    },
+    {
+     "title": "Selected Stories: The Best of Alice Munro",
+     "author": "Alice Munro",
+     "author_gender": "Female",
+     "nationality": "Canadian",
+     "original_language": "English",
+     "category": "Fiction",
+     "check": "Which collection is meant is unclear, so the year is left blank"
+    },
+    {
+     "title": "Where'd You Go, Bernadette",
+     "author": "Maria Semple",
+     "author_gender": "Female",
+     "nationality": "American",
+     "year_published": 2012,
+     "original_language": "English",
+     "category": "Fiction"
+    },
+    {
+     "title": "The Painted Girls",
+     "author": "Cathy Marie Buchanan",
+     "note": "Sheet reads Kay Buchanan.",
+     "author_gender": "Female",
+     "nationality": "Canadian",
+     "year_published": 2012,
+     "original_language": "English",
+     "category": "Fiction"
+    },
+    {
+     "title": "Never Mind",
+     "author": "Edward St Aubyn",
+     "author_gender": "Male",
+     "nationality": "British",
+     "year_published": 1992,
+     "original_language": "English",
+     "category": "Fiction"
+    },
+    {
+     "title": "A Tale of Two Cities",
+     "author": "Charles Dickens",
+     "format": "film",
+     "note": "Marked [video] on the typed list; no author given on the sheet.",
+     "author_gender": "Male",
+     "nationality": "British",
+     "year_published": 1859,
+     "original_language": "English",
+     "category": "Fiction"
+    }
+   ]
+  },
+  {
+   "id": "2015-16",
+   "label": "2015-2016",
+   "books": [
+    {
+     "title": "The Elegance of the Hedgehog",
+     "author": "Muriel Barbery",
+     "author_gender": "Female",
+     "nationality": "French",
+     "year_published": 2006,
+     "original_language": "French",
+     "category": "Fiction"
+    },
+    {
+     "title": "Italian Shoes",
+     "author": "Henning Mankell",
+     "author_gender": "Male",
+     "nationality": "Swedish",
+     "year_published": 2006,
+     "original_language": "Swedish",
+     "category": "Fiction"
+    },
+    {
+     "title": "The Piano Teacher",
+     "author": "Janice Y. K. Lee",
+     "author_gender": "Female",
+     "nationality": "American",
+     "year_published": 2009,
+     "original_language": "English",
+     "category": "Fiction"
+    },
+    {
+     "title": "A Death in the Family (My Struggle)",
+     "author": "Karl Ove Knausgaard",
+     "author_gender": "Male",
+     "nationality": "Norwegian",
+     "year_published": 2009,
+     "original_language": "Norwegian",
+     "category": "Fiction",
+     "check": "Autobiographical novel; classed as fiction"
+    },
+    {
+     "title": "The Night Stages",
+     "author": "Jane Urquhart",
+     "author_gender": "Female",
+     "nationality": "Canadian",
+     "year_published": 2015,
+     "original_language": "English",
+     "category": "Fiction"
+    },
+    {
+     "title": "All the Light We Cannot See",
+     "author": "Anthony Doerr",
+     "note": "Sheet reads Doer.",
+     "author_gender": "Male",
+     "nationality": "American",
+     "year_published": 2014,
+     "original_language": "English",
+     "category": "Fiction"
+    },
+    {
+     "title": "Middlemarch",
+     "author": "George Eliot",
+     "author_gender": "Female",
+     "nationality": "British",
+     "year_published": 1871,
+     "original_language": "English",
+     "category": "Fiction"
+    }
+   ]
+  },
+  {
+   "id": "2016-17",
+   "label": "2016-2017",
+   "books": [
+    {
+     "title": "A Spool of Blue Thread",
+     "author": "Anne Tyler",
+     "author_gender": "Female",
+     "nationality": "American",
+     "year_published": 2015,
+     "original_language": "English",
+     "category": "Fiction"
+    },
+    {
+     "title": "The Ascent of Rum Doodle",
+     "author": "W. E. Bowman",
+     "author_gender": "Male",
+     "nationality": "British",
+     "year_published": 1956,
+     "original_language": "English",
+     "category": "Fiction"
+    },
+    {
+     "title": "The Blazing World",
+     "author": "Siri Hustvedt",
+     "author_gender": "Female",
+     "nationality": "American",
+     "year_published": 2014,
+     "original_language": "English",
+     "category": "Fiction"
+    },
+    {
+     "title": "My Brilliant Friend",
+     "author": "Elena Ferrante",
+     "author_gender": "Female",
+     "nationality": "Italian",
+     "year_published": 2011,
+     "original_language": "Italian",
+     "category": "Fiction"
+    },
+    {
+     "title": "A Good Man Is Hard to Find",
+     "author": "Flannery O'Connor",
+     "author_gender": "Female",
+     "nationality": "American",
+     "year_published": 1955,
+     "original_language": "English",
+     "category": "Fiction"
+    },
+    {
+     "title": "To Kill a Mockingbird",
+     "author": "Harper Lee",
+     "author_gender": "Female",
+     "nationality": "American",
+     "year_published": 1960,
+     "original_language": "English",
+     "category": "Fiction"
+    },
+    {
+     "title": "The Big Green Tent",
+     "author": "Ludmila Ulitskaya",
+     "author_gender": "Female",
+     "nationality": "Russian",
+     "year_published": 2010,
+     "original_language": "Russian",
+     "category": "Fiction"
+    }
+   ]
+  },
+  {
+   "id": "2017-18",
+   "label": "2017-2018",
+   "books": [
+    {
+     "title": "Commonwealth",
+     "author": "Ann Patchett",
+     "note": "Sheet reads Anna Patchett.",
+     "author_gender": "Female",
+     "nationality": "American",
+     "year_published": 2016,
+     "original_language": "English",
+     "category": "Fiction"
+    },
+    {
+     "title": "A Very Close Conspiracy",
+     "author": "Jane Dunn",
+     "author_gender": "Female",
+     "nationality": "British",
+     "year_published": 1990,
+     "original_language": "English",
+     "category": "Non-fiction"
+    },
+    {
+     "title": "The Noise of Time",
+     "author": "Julian Barnes",
+     "author_gender": "Male",
+     "nationality": "British",
+     "year_published": 2016,
+     "original_language": "English",
+     "category": "Fiction"
+    },
+    {
+     "title": "The Uncommon Reader",
+     "author": "Alan Bennett",
+     "author_gender": "Male",
+     "nationality": "British",
+     "year_published": 2007,
+     "original_language": "English",
+     "category": "Fiction"
+    },
+    {
+     "title": "A Man Called Ove",
+     "author": "Fredrik Backman",
+     "author_gender": "Male",
+     "nationality": "Swedish",
+     "year_published": 2012,
+     "original_language": "Swedish",
+     "category": "Fiction"
+    },
+    {
+     "title": "The Infatuations",
+     "author": "Javier Marías",
+     "note": "Translated by Margaret Jull Costa.",
+     "author_gender": "Male",
+     "nationality": "Spanish",
+     "year_published": 2011,
+     "original_language": "Spanish",
+     "category": "Fiction"
+    },
+    {
+     "title": "Stalin's Daughter",
+     "author": "Rosemary Sullivan",
+     "author_gender": "Female",
+     "nationality": "Canadian",
+     "year_published": 2015,
+     "original_language": "English",
+     "category": "Non-fiction"
+    }
+   ]
+  },
+  {
+   "id": "2018-19",
+   "label": "2018-2019",
+   "books": [
+    {
+     "title": "February",
+     "author": "Lisa Moore",
+     "author_gender": "Female",
+     "nationality": "Canadian",
+     "year_published": 2009,
+     "original_language": "English",
+     "category": "Fiction"
+    },
+    {
+     "title": "Nothing to Envy",
+     "author": "Barbara Demick",
+     "author_gender": "Female",
+     "nationality": "American",
+     "year_published": 2009,
+     "original_language": "English",
+     "category": "Non-fiction"
+    },
+    {
+     "title": "My Name Is Red",
+     "author": "Orhan Pamuk",
+     "author_gender": "Male",
+     "nationality": "Turkish",
+     "year_published": 1998,
+     "original_language": "Turkish",
+     "category": "Fiction"
+    },
+    {
+     "title": "Killers of the Flower Moon",
+     "author": "David Grann",
+     "author_gender": "Male",
+     "nationality": "American",
+     "year_published": 2017,
+     "original_language": "English",
+     "category": "Non-fiction"
+    },
+    {
+     "title": "Wide Sargasso Sea",
+     "author": "Jean Rhys",
+     "author_gender": "Female",
+     "nationality": "British",
+     "year_published": 1966,
+     "original_language": "English",
+     "category": "Fiction"
+    },
+    {
+     "title": "One Hundred Years of Solitude",
+     "author": "Gabriel García Márquez",
+     "author_gender": "Male",
+     "nationality": "Colombian",
+     "year_published": 1967,
+     "original_language": "Spanish",
+     "category": "Fiction"
+    },
+    {
+     "title": "Americanah",
+     "author": "Chimamanda Ngozi Adichie",
+     "author_gender": "Female",
+     "nationality": "Nigerian",
+     "year_published": 2013,
+     "original_language": "English",
+     "category": "Fiction"
+    },
+    {
+     "title": "The Association of Small Bombs",
+     "author": "Karan Mahajan",
+     "author_gender": "Male",
+     "nationality": "Indian",
+     "year_published": 2016,
+     "original_language": "English",
+     "category": "Fiction"
+    }
+   ]
+  },
+  {
+   "id": "2019-20",
+   "label": "2019-2020",
+   "books": [
+    {
+     "title": "Man's Search for Meaning",
+     "author": "Viktor Frankl",
+     "author_gender": "Male",
+     "nationality": "Austrian",
+     "year_published": 1946,
+     "original_language": "German",
+     "category": "Non-fiction"
+    },
+    {
+     "title": "Never Let Me Go",
+     "author": "Kazuo Ishiguro",
+     "author_gender": "Male",
+     "nationality": "British",
+     "year_published": 2005,
+     "original_language": "English",
+     "category": "Fiction"
+    },
+    {
+     "title": "Autumn",
+     "author": "Ali Smith",
+     "author_gender": "Female",
+     "nationality": "British",
+     "year_published": 2016,
+     "original_language": "English",
+     "category": "Fiction"
+    },
+    {
+     "title": "Quintland Sisters",
+     "author": "Shelley Wood",
+     "author_gender": "Female",
+     "nationality": "Canadian",
+     "year_published": 2019,
+     "original_language": "English",
+     "category": "Fiction"
+    },
+    {
+     "title": "The Heart of the Matter",
+     "author": "Graham Greene",
+     "note": "Also appears in the early list.",
+     "author_gender": "Male",
+     "nationality": "British",
+     "year_published": 1948,
+     "original_language": "English",
+     "category": "Fiction"
+    },
+    {
+     "title": "A Gentleman in Moscow",
+     "author": "Amor Towles",
+     "author_gender": "Male",
+     "nationality": "American",
+     "year_published": 2016,
+     "original_language": "English",
+     "category": "Fiction"
+    },
+    {
+     "title": "The Organist",
+     "author": "Mark Abley",
+     "author_gender": "Male",
+     "nationality": "Canadian",
+     "year_published": 2019,
+     "original_language": "English",
+     "category": "Non-fiction"
+    },
+    {
+     "title": "Educated",
+     "author": "Tara Westover",
+     "author_gender": "Female",
+     "nationality": "American",
+     "year_published": 2018,
+     "original_language": "English",
+     "category": "Non-fiction"
+    },
+    {
+     "title": "The Road to Character",
+     "author": "David Brooks",
+     "author_gender": "Male",
+     "nationality": "American",
+     "year_published": 2015,
+     "original_language": "English",
+     "category": "Non-fiction"
+    }
+   ]
+  },
+  {
+   "id": "2020-21",
+   "label": "2020-2021",
+   "books": [
+    {
+     "title": "Orlando",
+     "author": "Virginia Woolf",
+     "author_gender": "Female",
+     "nationality": "British",
+     "year_published": 1928,
+     "original_language": "English",
+     "category": "Fiction"
+    },
+    {
+     "title": "Like Water for Chocolate",
+     "author": "Laura Esquivel",
+     "author_gender": "Female",
+     "nationality": "Mexican",
+     "year_published": 1989,
+     "original_language": "Spanish",
+     "category": "Fiction"
+    },
+    {
+     "title": "The Summer Book",
+     "author": "Tove Jansson",
+     "author_gender": "Female",
+     "nationality": "Finnish",
+     "year_published": 1972,
+     "original_language": "Swedish",
+     "category": "Fiction"
+    },
+    {
+     "title": "The Prime of Miss Jean Brodie",
+     "author": "Muriel Spark",
+     "author_gender": "Female",
+     "nationality": "British",
+     "year_published": 1961,
+     "original_language": "English",
+     "category": "Fiction"
+    },
+    {
+     "title": "Nearly Normal Family",
+     "author": "M. T. Edvardsson",
+     "author_gender": "Male",
+     "nationality": "Swedish",
+     "year_published": 2018,
+     "original_language": "Swedish",
+     "category": "Fiction"
+    },
+    {
+     "title": "Brick Lane",
+     "author": "Monica Ali",
+     "author_gender": "Female",
+     "nationality": "British",
+     "year_published": 2003,
+     "original_language": "English",
+     "category": "Fiction"
+    },
+    {
+     "title": "The Overstory",
+     "author": "Richard Powers",
+     "author_gender": "Male",
+     "nationality": "American",
+     "year_published": 2018,
+     "original_language": "English",
+     "category": "Fiction"
+    },
+    {
+     "title": "Hamnet",
+     "author": "Maggie O'Farrell",
+     "note": "Sheet reads 'Hamnet and Judith'.",
+     "author_gender": "Female",
+     "nationality": "British",
+     "year_published": 2020,
+     "original_language": "English",
+     "category": "Fiction"
+    }
+   ]
+  },
+  {
+   "id": "2021-22",
+   "label": "2021-2022",
+   "books": [
+    {
+     "title": "The Sweetness of Water",
+     "author": "Nathan Harris",
+     "author_gender": "Male",
+     "nationality": "American",
+     "year_published": 2021,
+     "original_language": "English",
+     "category": "Fiction"
+    },
+    {
+     "title": "Becoming Mrs. Lewis",
+     "author": "Patti Callahan",
+     "author_gender": "Female",
+     "nationality": "American",
+     "year_published": 2018,
+     "original_language": "English",
+     "category": "Fiction"
+    },
+    {
+     "title": "Real Estate",
+     "author": "Deborah Levy",
+     "author_gender": "Female",
+     "nationality": "British",
+     "year_published": 2021,
+     "original_language": "English",
+     "category": "Non-fiction"
+    },
+    {
+     "title": "Shuggie Bain",
+     "author": "Douglas Stuart",
+     "author_gender": "Male",
+     "nationality": "British",
+     "year_published": 2020,
+     "original_language": "English",
+     "category": "Fiction"
+    },
+    {
+     "title": "Winter in Sokcho",
+     "author": "Elisa Shua Dusapin",
+     "author_gender": "Female",
+     "nationality": "French",
+     "year_published": 2016,
+     "original_language": "French",
+     "category": "Fiction"
+    },
+    {
+     "title": "Where the Crawdads Sing",
+     "author": "Delia Owens",
+     "author_gender": "Female",
+     "nationality": "American",
+     "year_published": 2018,
+     "original_language": "English",
+     "category": "Fiction"
+    },
+    {
+     "title": "Clara a20/21 Highway",
+     "author": "Amor Towles",
+     "note": "Garbled on the sheet; may be The Lincoln Highway. Needs checking.",
+     "author_gender": "Male",
+     "nationality": "American",
+     "year_published": 2021,
+     "original_language": "English",
+     "category": "Fiction",
+     "check": "Title garbled on the sheet; assumed The Lincoln Highway (2021)"
+    },
+    {
+     "title": "The Paris Library",
+     "author": "Janet Skeslien Charles",
+     "author_gender": "Female",
+     "nationality": "American",
+     "year_published": 2021,
+     "original_language": "English",
+     "category": "Fiction"
+    }
+   ]
+  },
+  {
+   "id": "2022-23",
+   "label": "2022-2023",
+   "books": [
+    {
+     "title": "The Sentence",
+     "author": "Louise Erdrich",
+     "author_gender": "Female",
+     "nationality": "American",
+     "year_published": 2021,
+     "original_language": "English",
+     "category": "Fiction"
+    },
+    {
+     "title": "Wan",
+     "author": "Dawn Promislow",
+     "author_gender": "Female",
+     "nationality": "Canadian",
+     "year_published": 2022,
+     "original_language": "English",
+     "category": "Fiction"
+    },
+    {
+     "title": "Dictionary of Lost Words",
+     "author": "Pip Williams",
+     "author_gender": "Female",
+     "nationality": "Australian",
+     "year_published": 2020,
+     "original_language": "English",
+     "category": "Fiction"
+    },
+    {
+     "title": "A Month in the Country",
+     "author": "J. L. Carr",
+     "author_gender": "Male",
+     "nationality": "British",
+     "year_published": 1980,
+     "original_language": "English",
+     "category": "Fiction"
+    },
+    {
+     "title": "Their Eyes Were Watching God",
+     "author": "Zora Neale Hurston",
+     "author_gender": "Female",
+     "nationality": "American",
+     "year_published": 1937,
+     "original_language": "English",
+     "category": "Fiction"
+    },
+    {
+     "title": "The Reading List",
+     "author": "Sara Nisha Adams",
+     "author_gender": "Female",
+     "nationality": "British",
+     "year_published": 2021,
+     "original_language": "English",
+     "category": "Fiction"
+    },
+    {
+     "title": "Happening",
+     "author": "Annie Ernaux",
+     "author_gender": "Female",
+     "nationality": "French",
+     "year_published": 2000,
+     "original_language": "French",
+     "category": "Non-fiction",
+     "check": "Memoir; classed as non-fiction"
+    }
+   ]
+  },
+  {
+   "id": "2023-24",
+   "label": "2023-2024",
+   "note": "Woman, Watching was also on this list but was not read before the summer; it is filed under 2024-25.",
+   "books": [
+    {
+     "title": "Lessons in Chemistry",
+     "author": "Bonnie Garmus",
+     "author_gender": "Female",
+     "nationality": "American",
+     "year_published": 2022,
+     "original_language": "English",
+     "category": "Fiction"
+    },
+    {
+     "title": "The Island of Missing Trees",
+     "author": "Elif Shafak",
+     "author_gender": "Female",
+     "nationality": "British",
+     "year_published": 2021,
+     "original_language": "English",
+     "category": "Fiction"
+    },
+    {
+     "title": "The Beekeeper of Aleppo",
+     "author": "Christy Lefteri",
+     "author_gender": "Female",
+     "nationality": "British",
+     "year_published": 2019,
+     "original_language": "English",
+     "category": "Fiction"
+    },
+    {
+     "title": "Solito: A Memoir",
+     "author": "Javier Zamora",
+     "author_gender": "Male",
+     "nationality": "Salvadoran",
+     "year_published": 2022,
+     "original_language": "English",
+     "category": "Non-fiction"
+    },
+    {
+     "title": "An Island",
+     "author": "Karen Jennings",
+     "author_gender": "Female",
+     "nationality": "South African",
+     "year_published": 2020,
+     "original_language": "English",
+     "category": "Fiction"
+    },
+    {
+     "title": "The World and All It Holds",
+     "author": "Aleksandar Hemon",
+     "author_gender": "Male",
+     "nationality": "American",
+     "year_published": 2023,
+     "original_language": "English",
+     "category": "Fiction"
+    },
+    {
+     "title": "American Ramble: A Walk of Memory and Renewal",
+     "note": "Author was not on the sheet; found by search. Discussed at length in the 2024-25 intro: the group all loved it, and the author died the day they discussed it.",
+     "author": "Neil King Jr.",
+     "author_gender": "Male",
+     "nationality": "American",
+     "year_published": 2023,
+     "original_language": "English",
+     "category": "Non-fiction"
+    }
+   ]
+  },
+  {
+   "id": "2024-25",
+   "label": "2024-2025",
+   "note": "No months were chosen at the start. Oct 22 2024 update after the Knowlton Literary Festival: an unread pick was moved to November and Kairos was added for December.",
+   "books": [
+    {
+     "title": "Woman, Watching: Louise de Kiriline Lawrence and the Songbirds of Pimisi Bay",
+     "author": "Merilyn Simonds",
+     "date": "Nov 2024",
+     "status": "read",
+     "note": "Originally scheduled for June 2024 and moved to November. Sheet spells the bay Pimsi in one place. Sheet spells the author Marilyn; the author is Merilyn Simonds.",
+     "author_gender": "Female",
+     "nationality": "Canadian",
+     "year_published": 2022,
+     "original_language": "English",
+     "category": "Non-fiction"
+    },
+    {
+     "title": "Kairos",
+     "author": "Jenny Erpenbeck",
+     "date": "Dec 2024",
+     "status": "read",
+     "author_gender": "Female",
+     "nationality": "German",
+     "year_published": 2021,
+     "original_language": "German",
+     "category": "Fiction"
+    },
+    {
+     "title": "Brooklyn",
+     "author": "Colm Tóibín",
+     "date": "Jan 2025",
+     "note": "Read together with Long Island in one slot (both are short).",
+     "author_gender": "Male",
+     "nationality": "Irish",
+     "year_published": 2009,
+     "original_language": "English",
+     "category": "Fiction"
+    },
+    {
+     "title": "Long Island",
+     "author": "Colm Tóibín",
+     "date": "Jan 2025",
+     "note": "Read together with Brooklyn in one slot.",
+     "author_gender": "Male",
+     "nationality": "Irish",
+     "year_published": 2024,
+     "original_language": "English",
+     "category": "Fiction"
+    },
+    {
+     "title": "The Women",
+     "author": "Kristin Hannah",
+     "date": "March 2025",
+     "status": "unclear",
+     "note": "Sheet shows both an X and a tick. Meeting dated March 11.",
+     "author_gender": "Female",
+     "nationality": "American",
+     "year_published": 2024,
+     "original_language": "English",
+     "category": "Fiction"
+    },
+    {
+     "title": "Chancellor: The Remarkable Odyssey of Angela Merkel",
+     "author": "Kati Marton",
+     "date": "April 2025",
+     "status": "read",
+     "note": "Handwritten 'April 13' (year inferred from season) and 'Il Fornetto' (looks like a venue).",
+     "author_gender": "Female",
+     "nationality": "American",
+     "year_published": 2021,
+     "original_language": "English",
+     "category": "Non-fiction"
+    },
+    {
+     "title": "Olive Kitteridge",
+     "author": "Elizabeth Strout",
+     "date": "May 2025",
+     "status": "read",
+     "note": "Handwritten 'May 13/25'.",
+     "author_gender": "Female",
+     "nationality": "American",
+     "year_published": 2008,
+     "original_language": "English",
+     "category": "Fiction"
+    },
+    {
+     "title": "The War We Won Apart",
+     "author": "Nahlah Ayed",
+     "note": "No status marked.",
+     "author_gender": "Female",
+     "nationality": "Canadian",
+     "year_published": 2024,
+     "original_language": "English",
+     "category": "Non-fiction"
+    }
+   ]
+  },
+  {
+   "id": "2025-26",
+   "label": "2025-2026",
+   "note": "Meeting dates are months only; years inferred from the season.",
+   "books": [
+    {
+     "title": "Intermezzo",
+     "author": "Sally Rooney",
+     "date": "Sept (year unclear)",
+     "status": "read",
+     "note": "Handwritten 'Sept?' beside it; year unclear.",
+     "author_gender": "Female",
+     "nationality": "Irish",
+     "year_published": 2024,
+     "original_language": "English",
+     "category": "Fiction"
+    },
+    {
+     "title": "Who Is Government? The Untold Story of Public Service",
+     "author": "Michael Lewis (ed.)",
+     "date": "Nov 2025",
+     "status": "read",
+     "author_gender": "Male",
+     "nationality": "American",
+     "year_published": 2020,
+     "original_language": "English",
+     "category": "Non-fiction"
+    },
+    {
+     "title": "Victory City",
+     "author": "Salman Rushdie",
+     "date": "Dec 9 2025",
+     "status": "read",
+     "author_gender": "Male",
+     "nationality": "British",
+     "year_published": 2023,
+     "original_language": "English",
+     "category": "Fiction"
+    },
+    {
+     "title": "The House of Doors",
+     "author": "Tan Twan Eng",
+     "date": "Jan 2026",
+     "note": "Offered as an either/or with Soldier, Sailor, which was cancelled; a printed note asks for a consensus.",
+     "author_gender": "Male",
+     "nationality": "Malaysian",
+     "year_published": 2023,
+     "original_language": "English",
+     "category": "Fiction"
+    },
+    {
+     "title": "Remarkably Bright Creatures",
+     "author": "Shelby Van Pelt",
+     "date": "May 2026",
+     "status": "read",
+     "author_gender": "Female",
+     "nationality": "American",
+     "year_published": 2022,
+     "original_language": "English",
+     "category": "Fiction"
+    }
+   ]
+  }
+ ]
+}
